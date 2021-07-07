@@ -4,7 +4,8 @@
   "description": "Use this template to create the UI and content of an RSS feed reader.",
   "main": "index.js",
   "scripts": {
-    "build": "osmosfeed"
+    "build": "osmosfeed",
+    "watch": "chokidar includes/* -c 'yarn build'"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
   "homepage": "https://github.com/osmoscraft/osmosfeed-template#readme",
   "dependencies": {
     "@osmoscraft/osmosfeed": "^1.2.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "2.1.0",
+    "watch": "1.0.2"
   }
 }
