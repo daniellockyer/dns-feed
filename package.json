@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "osmosfeed",
-    "watch": "yarn build && chokidar includes/* osmosfeed.yaml -c 'yarn build'"
+    "watch": "chokidar 'includes/*' osmosfeed.yaml -c 'yarn build' --initial"
   },
   "repository": {
     "type": "git",
