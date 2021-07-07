@@ -2,3 +2,4 @@ cacheUrl: https://daniellockyer.github.io/dns-feed/cache.json
 sources:
   - href: https://dnsimple.statuspage.io/history.rss
   - href: https://www.namecheap.com/status-updates/archives/category/domains/feed
+  - href: https://www.cloudflarestatus.com/history.rss
