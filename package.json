@@ -22,7 +22,6 @@
     "@osmoscraft/osmosfeed": "^1.2.2"
   },
   "devDependencies": {
-    "chokidar-cli": "2.1.0",
-    "watch": "1.0.2"
+    "chokidar-cli": "2.1.0"
   }
 }
