@@ -3,6 +3,7 @@ sources:
   # DNS specific
   - href: https://dnsimple.statuspage.io/history.rss
   - href: https://www.namecheap.com/status-updates/archives/category/domains/feed
+  - href: https://status.names.co.uk/history.rss
 
   # General
   - href: https://www.cloudflarestatus.com/history.rss
