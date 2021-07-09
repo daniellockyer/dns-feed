@@ -1,29 +1,27 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
     :root {
         /**
      * Solarized Light
      * Ethan Schoonover (modified by aramisgithub)
      */
-        --base00: #fdf6e3;
-        --base01: #eee8d5;
-        --base02: #93a1a1;
-        --base03: #839496;
-        --base04: #657b83;
-        --base05: #586e75;
-        --base06: #073642;
-        --base07: #002b36;
-        --base08: #dc322f;
-        --base09: #cb4b16;
-        --base0A: #b58900;
-        --base0B: #859900;
-        --base0C: #2aa198;
-        --base0D: #268bd2;
-        --base0E: #6c71c4;
-        --base0F: #d33682;
+        --base00: #fff;
+        --base01: #f5f8ff;
+        --base02: #dee3e3;
+        --base03: #80969d;
+        --base04: #7b8e8e;
+        --base05: #697777;
+        --base06: #566161;
+        --base07: #1a1e1e;
+        --base08: #0a0b0b;
+        --base0A: #2965ff;
+        --base0B: #3345f5;
 
         /**
     * Typograph
     */
+        --font-family-default: 'Inter', "Helvetica Neue", sans-serif;
         --font-size-m: 1.6rem;
         --font-size-s: 1.4rem;
 
@@ -31,31 +29,116 @@
     * Components
     */
         --body-color: var(--base07);
-        --body-bg: var(--base01);
+        --body-bg: var(--base00);
 
-        --source-name-color: var(--base0D);
-        --source-name-hover-color: var(--base0D);
+        --source-name-color: var(--base07);
+        --source-name-hover-color: var(--base0A);
 
-        --article-title-color: var(--base05);
-        --article-title-hover-color: var(--base0E);
-        --article-summary-hover-color: var(--base0D);
-
-        --accordion-content-rail-color: var(--base01);
-        --accordion-content-hover-rail-color: var(--base0D);
-        --accordion-title-marker-color: var(--base01);
-        --accordion-title-hover-marker-color: var(--base0E);
+        --article-title-color: var(--base0A);
+        --article-title-hover-color: var(--base0B);
+        --article-summary-hover-color: var(--base0A);
 
         --card-bg: var(--base00);
         --card-shadow: none;
         --card-radius: 0;
-        --footer-link-hover-color: var(--base0D);
+        --footer-link-hover-color: var(--base0A);
+    }
+
+    h1 {
+        margin-bottom: 2.8rem;
+        font-size: 2.2rem;
+    }
+
+    body {
+        max-width: 960px;
+        margin: 4rem auto;
+        letter-spacing: .2px;
+    }
+
+    .daily-content {
+        margin-bottom: .8rem;
     }
 
     .daily-heading {
-        padding-left: 0;
+        margin: 0 0 4px 0;
+        padding: 0;
+        color: var(--base07);
+        font-size: 1.35rem;
+        font-weight: 600;
     }
 
-    .card {
-        border: 1px solid var(--base02);
+    .sources {
+        padding: 12px 0;
     }
+
+    .source-name {
+        margin-bottom: .8rem;
+    }
+
+    .source-name__link {
+        color: var(--base04);
+    }
+
+    .source-name__link:hover {
+        color: var(--base07);
+        text-decoration: none;
+    }
+
+    .article-expander {
+        margin: 1.2rem 0;
+        padding: 16px 20px;
+        background: var(--base01);
+    }
+
+    .article-expander__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        color: var(--article-title-color);
+        font-size: var(--font-size-m);
+        font-weight: 500;
+    }
+
+    .article-expander__title svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--base0A);
+    }
+
+    .article-expander[open] .article-expander__title svg {
+        transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+    }
+
+    .article-summary-box-outer {
+        padding: 0;
+    }
+
+    .article-summary-box-inner {
+        padding: 16px 0 12px;
+        border: none;
+        background: var(--base01);
+        border-radius: 3px;
+    }
+
+    .article-summary-box-inner pre {
+        margin: 0;
+        font-family: var(--font-family-default);
+        font-weight: 400;
+        line-height: 1.65;
+        white-space: pre-line;
+    }
+    
+    .article-summary-link {
+        color: var(--base06);
+        font-size: var(--font-size-s);
+    }
+
+    .article-summary-link:hover {
+        color: var(--base07);
+    }
+    
 </style>

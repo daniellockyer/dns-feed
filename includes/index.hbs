@@ -198,6 +198,9 @@
 
 <body>
     <!-- %after-body-begin.html% -->
+    <header>
+        <h1>Broken DNS</h1>
+    </header>
     {{#each dates}}
     <section class="daily-content">
         <h2 class="daily-heading"><time datatime="{{isoPublishDate}}">{{isoPublishDate}}</time></h2>
@@ -210,7 +213,11 @@
                         {{#each articles}}
                         <article>
                             <details class="article-expander">
-                                <summary class="article-expander__title">{{title}}</summary>
+                                <summary class="article-expander__title">{{title}}
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
                                 <a class="article-summary-link article-summary-box-outer" href="{{link}}">
                                     <div class="article-summary-box-inner">
                                         <pre>{{description}}</pre>
