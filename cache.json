@@ -1,0 +1,731 @@
+{
+  "sources": [
+    {
+      "title": "DNSimple Status - Incident History",
+      "feedUrl": "https://dnsimple.statuspage.io/history.rss",
+      "siteUrl": "https://dnsimple.statuspage.io",
+      "articles": [
+        {
+          "id": "https://dnsimple.statuspage.io/incidents/f7c1nt20xsvv",
+          "author": null,
+          "description": "Sep  3, 21:55 UTC\nResolved - This incident has been resolved.\nSep  2, 09:06 UTC\nUpdate - Our upstream provider is still undergoing a DDoS attack. We're working with them to mitigate this issue. Our system is still experiencing sporadic connection issues.\nIf you have domains that expire in the next 48 hours, and you're unable to renew them, please contact our support for assistance. This incident doesn't affect domains that are set to auto-renew.\nIf you have initiated a transfer, we're monitoring your requests. These orders will complete but updates in our system might be delayed because of this incident.\nSep  1, 09:37 UTC\nUpdate - We are continuing to monitor for any further issues.\nSep  1, 09:37 UTC\nMonitoring - One of our upstream providers is undergoing a DDoS attack and registrar operations are partially degraded.",
+          "link": "https://dnsimple.statuspage.io/incidents/f7c1nt20xsvv",
+          "publishedOn": "2021-09-03T21:55:01.000Z",
+          "wordCount": 687,
+          "title": "Registrar operations partially degraded"
+        },
+        {
+          "id": "https://dnsimple.statuspage.io/incidents/d946xbhchqfk",
+          "author": null,
+          "description": "Aug 28, 11:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 28, 07:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 27, 08:49 UTC\nScheduled - Our upstream registrar provider will be undergoing scheduled maintenance during this time.\r\n\rDuring this scheduled system maintenance, the following services may be affected by a service interruption and/or timeout:\r\n\r- domain registrations\r\n- domain renewals\r\n- domain transfers\r\n- domain updates updates\r\n\rDNS resolution will not be impacted, domains will continue to resolve as usual.",
+          "link": "https://dnsimple.statuspage.io/incidents/d946xbhchqfk",
+          "publishedOn": "2021-08-28T11:00:42.000Z",
+          "wordCount": 637,
+          "title": "Registrar Scheduled Maintenance"
+        },
+        {
+          "id": "https://dnsimple.statuspage.io/incidents/g8793t4lgzw5",
+          "author": null,
+          "description": "Aug 28, 01:04 UTC\nResolved - This incident has been resolved.\nAug 28, 00:28 UTC\nMonitoring - Our legacy Vanity Name Servers IPs are accepting traffic back again. We are monitoring the implemented fix\nAug 27, 23:54 UTC\nIdentified - Our vanity name servers using legacy IP addresses are currently unavailable. Those IPs are: \n- 198.241.10.53\n- 198.241.11.53\n- 50.31.242.53\n- 50.31.243.53\nWe are currently working on deploying a solution for it.\nPlease notice that current vanity name servers using the current set of IP addresses are working as expected. https://support.dnsimple.com/articles/vanity-nameservers/",
+          "link": "https://dnsimple.statuspage.io/incidents/g8793t4lgzw5",
+          "publishedOn": "2021-08-28T01:04:23.000Z",
+          "wordCount": 642,
+          "title": "Vanity Name Servers using legacy IPs outage"
+        },
+        {
+          "id": "https://dnsimple.statuspage.io/incidents/57dn2n15cm62",
+          "author": null,
+          "description": "Aug 26, 08:43 UTC\nResolved - Connection to our registrar partner has been restored. Domain registration, transfer, and Sectigo SSL certificate issuance is operational.\nAug 26, 08:24 UTC\nIdentified - We're experiencing connection issues with one of our registrar partners. Domain registration, domain transfers, and Sectigo SSL certificates are impacted.\nDNS resolution is not impacted. Existing domains in our system are responding correctly.",
+          "link": "https://dnsimple.statuspage.io/incidents/57dn2n15cm62",
+          "publishedOn": "2021-08-26T08:43:34.000Z",
+          "wordCount": 613,
+          "title": "Connection issues with registrar partner"
+        }
+      ]
+    },
+    {
+      "title": "Domains – Namecheap Status",
+      "feedUrl": "https://www.namecheap.com/status-updates/archives/category/domains/feed",
+      "siteUrl": "https://www.namecheap.com/status-updates",
+      "articles": [
+        {
+          "id": "https://www.namecheap.com/status-updates/?p=62483",
+          "author": "Anton Kirichok",
+          "description": "Dear Customers, This is to let you know that the registry of .SG and .COM.SG domains will be processing scheduled maintenance. The time frame for the maintenance is as follows: September 4, 12:00 PM – 08:00 PM EST | September 4, 16:00 – September 5, 00:00 UTC Domain availability checks, registrations, renewals, updates, and WHOIS … Continue reading [Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021 →\nThe post [Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021 appeared first on Namecheap Status.",
+          "link": "https://www.namecheap.com/status-updates/archives/62483",
+          "publishedOn": "2021-08-28T16:00:00.000Z",
+          "wordCount": 231,
+          "title": "[Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021"
+        }
+      ]
+    },
+    {
+      "title": "Namesco Limited Status - Incident History",
+      "feedUrl": "https://status.names.co.uk/history.rss",
+      "siteUrl": "https://status.names.co.uk",
+      "articles": [
+        {
+          "id": "https://status.names.co.uk/incidents/61d6m3tdjdjf",
+          "author": null,
+          "description": "Aug 19, 02:00 BST\nCompleted - The scheduled maintenance has been completed.\nAug 18, 23:00 BST\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 17, 14:49 BST\nScheduled - During this maintenance period we will be making configuration changes to several core routers. We do not expect these changes to be service affecting however it should be considered an at-risk period.",
+          "link": "https://status.names.co.uk/incidents/61d6m3tdjdjf",
+          "publishedOn": "2021-08-19T01:00:38.000Z",
+          "wordCount": 123,
+          "title": "Emergency Network Maintenance"
+        },
+        {
+          "id": "https://status.names.co.uk/incidents/xl59ftwtjxcj",
+          "author": null,
+          "description": "Aug 17, 16:00 BST\nCompleted - The scheduled maintenance has been completed.\nAug 17, 09:02 BST\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  9, 14:40 BST\nScheduled - During this maintenance window we will be performing a generator load test. This will involve transitioning from mains power to generators and then back again.\nWe do not expect this to be service affecting however this should be considered an at-risk period.",
+          "link": "https://status.names.co.uk/incidents/xl59ftwtjxcj",
+          "publishedOn": "2021-08-17T15:00:30.000Z",
+          "wordCount": 127,
+          "title": "Generator Load Test"
+        },
+        {
+          "id": "https://status.names.co.uk/incidents/tfl1zc4y46pk",
+          "author": null,
+          "description": "Aug 11, 02:00 BST\nCompleted - The scheduled maintenance has been completed.\nAug 10, 23:00 BST\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  9, 14:52 BST\nScheduled - During this maintenance period we will be making configuration changes to several core routers and access routers. We do not expect these changes to be service affecting however it should be considered an at-risk period.",
+          "link": "https://status.names.co.uk/incidents/tfl1zc4y46pk",
+          "publishedOn": "2021-08-11T01:00:38.000Z",
+          "wordCount": 126,
+          "title": "Emergency Network Maintenance"
+        }
+      ]
+    },
+    {
+      "title": "Gandi.net Status - Incident History",
+      "feedUrl": "https://status.gandi.net/history.rss",
+      "siteUrl": "https://status.gandi.net",
+      "articles": [
+        {
+          "id": "https://status.gandi.net/incidents/b5x93fp5w7qc",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Nov 20, 08:00 - 12:00 UTC\nJan 29, 17:13 UTC\nScheduled - Registry Technical Provider Hexonet  Maintenance\n            List of TLD(s) impacted:\n.de, .au, .it, .es, .nl, .se, .lu, .nz, .at, .jp, .ru, .pl, .pt, .cat,\r\n.im, .gr, .dk, .hk, .cz, .ro, .lt, .pe, .no, .la, .mu, .lv, .ie, .af,\r\n.nu, .gy, .ph, .ht, .cx, .am, .cm, .mg, .si, .sk, .hn, .gs, .tl, .ms,\r\n.xn--p1ai, .sb, .ki, .xn--j6w193g, .nf\n            Maintenance Window: 2021-11-20 08:00AM UTC - 2021-11-20 12:00PM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/b5x93fp5w7qc",
+          "publishedOn": "2021-11-20T08:00:00.000Z",
+          "wordCount": 199,
+          "title": "[Production] Registry Technical Provider Hexonet  Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/xlw42zw36tcq",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 30, 05:00 - 05:30 UTC\nJul 16, 16:02 UTC\nScheduled - Registry Nic.ch Maintenance\n            List of TLD(s) impacted:\n.ch, .li\n            Maintenance Window: 2021-09-30 05:00AM UTC - 2021-09-30 05:30AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/xlw42zw36tcq",
+          "publishedOn": "2021-09-30T05:00:00.000Z",
+          "wordCount": 146,
+          "title": "[Production] Registry Nic.ch Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/3fzhpfn3bd9d",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 26, 01:00 - 02:00 UTC\nAug 27, 15:10 UTC\nScheduled - Registry Verisign Maintenance\n            List of TLD(s) impacted:\ncom, net\n            Maintenance Window: 2021-09-26 01:00AM UTC - 2021-09-26 02:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/3fzhpfn3bd9d",
+          "publishedOn": "2021-09-26T01:00:00.000Z",
+          "wordCount": 146,
+          "title": "[Production] Registry Verisign Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/sh2ylglwfx3w",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 23, 21:00 UTC  -  Sep 24, 01:00 UTC\nAug 26, 10:55 UTC\nScheduled - Registry Verisign Maintenance\n            List of TLD(s) impacted:\nxn--tckwe, xn--t60b56a, xn--mk1bu44c, xn--9dbq2a, tv, name, cc\n            Maintenance Window: 2021-09-23 09:00PM UTC - 2021-09-24 01:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/sh2ylglwfx3w",
+          "publishedOn": "2021-09-23T21:00:00.000Z",
+          "wordCount": 154,
+          "title": "[Production] Registry Verisign Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/2yzmptpw4zj9",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 21, 05:00 - 07:00 UTC\nAug 26, 10:51 UTC\nScheduled - Registry Nominet Maintenance\n            List of TLD(s) impacted:\nyoga, work, wedding, wales, vodka, vip, co.uk, me.uk, org.uk, uk, surf, rodeo, realestate, miami, luxe, london, law, jobs, horse, garden, fit, fishing, fashion, cymru, cooking, casa, career, boston, beer, bayern, abogado\n            Maintenance Window: 2021-09-21 05:00AM UTC - 2021-09-21 07:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/2yzmptpw4zj9",
+          "publishedOn": "2021-09-21T05:00:00.000Z",
+          "wordCount": 175,
+          "title": "[Production] Registry Nominet Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/8zr34y644xh6",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 14, 10:00 - 14:00 UTC\nAug 16, 08:20 UTC\nScheduled - Registry CentralNic Maintenance\n            List of TLD(s) impacted:\ngent, ae.org, art, auto, autos, baby, bar, beauty, best, blog, boats, bond, br.com, build, cam, car, cars, ceo, cfd, cn.com, co.com, college, com.de, coop, cyou, de.com, desi, design, eu.com, fans, feedback, fm, forum, frl, fun, gay, gb.net, gd, gr.com, hair, homes, host, hu.net, icu, in.net, ink, jp.net, jpn.com, love, luxury, makeup, monster, motorcycles, online, ooo, press, protection, pw, qpon, quest, radio.am, radio.fm, reit, rent, rest, ru.com, sa.com, saarland, sbs, se.net, security, site, skin, space, storage, store, tech, theatre, tickets, uk.com, uk.net, uno, us.com, us.org, vg, website, wiki, xyz, yachts, za.com\n            Maintenance Window: 2021-09-14 10:00AM UTC - 2021-09-14 02:00PM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/8zr34y644xh6",
+          "publishedOn": "2021-09-14T10:00:00.000Z",
+          "wordCount": 234,
+          "title": "[Production] Registry CentralNic Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/2tpls26jmtbz",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 14, 06:00 - 11:30 UTC\nJul 16, 16:04 UTC\nScheduled - Registry Nic.ch Maintenance\n            List of TLD(s) impacted:\n.ch, .li\n            Maintenance Window: 2021-09-14 06:00AM UTC - 2021-09-14 11:30AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/2tpls26jmtbz",
+          "publishedOn": "2021-09-14T06:00:00.000Z",
+          "wordCount": 146,
+          "title": "[OT&E] Registry Nic.ch Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/7yc9z293f2hh",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 9, 10:00 - 11:00 UTC\nAug 27, 15:14 UTC\nScheduled - Registry Afilias Maintenance\n            List of TLD(s) impacted:\nac, archi, bet, bio, black, blue, green, info, io, kim, lgbt, llc, mobi, organic, pet, pink, poker, pro, promo, red, sh, shiksha, ski, vote, voto, xn--5tzm5g, xn--6frz82g\n            Maintenance Window: 2021-09-09 10:00AM UTC - 2021-09-09 11:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/7yc9z293f2hh",
+          "publishedOn": "2021-09-09T10:00:00.000Z",
+          "wordCount": 171,
+          "title": "[Production] Registry Afilias Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/2k708b30cdnk",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 9, 10:00 - 11:00 UTC\nAug 27, 15:11 UTC\nScheduled - Registry Pir Maintenance\n            List of TLD(s) impacted:\nngo, ong, org, xn--c1avg, xn--i1b6b1a6a2e, xn--nqv7f\n            Maintenance Window: 2021-09-09 10:00AM UTC - 2021-09-09 11:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/2k708b30cdnk",
+          "publishedOn": "2021-09-09T10:00:00.000Z",
+          "wordCount": 150,
+          "title": "[Production] Registry Pir Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/zvts5mv266rk",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 9, 05:00 - 05:30 UTC\nJul 16, 16:01 UTC\nScheduled - Registry Nic.ch Maintenance\n            List of TLD(s) impacted:\n.ch, .li\n            Maintenance Window: 2021-09-09 05:00AM UTC - 2021-09-09 05:30AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/zvts5mv266rk",
+          "publishedOn": "2021-09-09T05:00:00.000Z",
+          "wordCount": 146,
+          "title": "[Production] Registry Nic.ch Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/86xd52c0thdr",
+          "author": null,
+          "description": "Sep  5, 17:53 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  5, 16:48 UTC\nIdentified - The issue has been identified and a fix is being implemented.",
+          "link": "https://status.gandi.net/incidents/86xd52c0thdr",
+          "publishedOn": "2021-09-05T17:53:41.000Z",
+          "wordCount": 147,
+          "title": "Hosting PaaS SD5 node issue"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/l4phvz6fp3yw",
+          "author": null,
+          "description": "Sep  5, 16:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  9, 11:43 UTC\nScheduled - Registry Sgnic Maintenance\n            List of TLD(s) impacted:\nsg, xn--clchc0ea0b2g2a9gcd, xn--yfro4i67o\n            Maintenance Window: 2021-09-05 04:00PM UTC - 2021-09-06 12:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/l4phvz6fp3yw",
+          "publishedOn": "2021-09-05T16:00:51.000Z",
+          "wordCount": 165,
+          "title": "[Production] Registry Sgnic Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/th1nhw0cnp27",
+          "author": null,
+          "description": "Sep  3, 15:59 UTC\nResolved - This incident has been resolved.\nSep  1, 11:44 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  1, 11:39 UTC\nIdentified - We are investigating slow response times on some registries\nYou may experience issues querying domain availability status for these TLDs:\nnu, it, de, at, cz, lu, pl, es, im, cat, ru, nl, jp, se, pt, hn, ht, gs, sb, tl, mu, cx, am, hk, lt, gb.com, la, kr.com, ar.com, qc.com, uy.com, se.com, hu.com, no.com, no, af, nf, ki, pe, gy, ms, dk, lv, ph, nz, ro, xn--p1ai, si, mg, au, gr, cm, xn--j6w193g, xn--qxam",
+          "link": "https://status.gandi.net/incidents/th1nhw0cnp27",
+          "publishedOn": "2021-09-03T15:59:47.000Z",
+          "wordCount": 220,
+          "title": "Connection issue with some registries"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/9dyl24pd44w5",
+          "author": null,
+          "description": "Sep  3, 14:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 27, 15:19 UTC\nScheduled - Registry HostmasterDK Maintenance\n            List of TLD(s) impacted:\ndk\n            Maintenance Window: 2021-09-03 02:00PM UTC - 2021-09-06 06:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/9dyl24pd44w5",
+          "publishedOn": "2021-09-03T14:00:48.000Z",
+          "wordCount": 163,
+          "title": "[Production] Registry HostmasterDK Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/tgh6vxl0l2xm",
+          "author": null,
+          "description": "Sep  3, 09:55 UTC\nResolved - This incident has been resolved.\nSep  3, 09:16 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  3, 09:11 UTC\nIdentified - We have identified an issue with a Gandimail storage unit. Our teams are working to resolve the issue.",
+          "link": "https://status.gandi.net/incidents/tgh6vxl0l2xm",
+          "publishedOn": "2021-09-03T09:55:57.000Z",
+          "wordCount": 164,
+          "title": "GandiMail storage incident"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/t1v8hdh24v6d",
+          "author": null,
+          "description": "Sep  2, 15:28 UTC\nResolved - This incident has been resolved.\nSep  2, 14:17 UTC\nUpdate - We are continuing to monitor for any further issues.\nSep  2, 14:14 UTC\nMonitoring - We had a network incident between 15:37 and 15:43 CEST.\nDuring this time you may have seen services timeout toward FR-SD3 PaaS and IaaS. \nWe still have some instability on this segment",
+          "link": "https://status.gandi.net/incidents/t1v8hdh24v6d",
+          "publishedOn": "2021-09-02T15:28:03.000Z",
+          "wordCount": 183,
+          "title": "Network incident for 5mn on FR-SD3 IaaS"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/1007rf0q0256",
+          "author": null,
+          "description": "Sep  2, 03:30 UTC\nCompleted - The scheduled maintenance has been completed.\nSep  1, 23:31 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 27, 15:08 UTC\nScheduled - Registry ARIRegistryIn Maintenance\n            List of TLD(s) impacted:\n.IN\n            Maintenance Window: 2021-09-01 11:30PM UTC - 2021-09-02 03:30AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/1007rf0q0256",
+          "publishedOn": "2021-09-02T03:30:30.000Z",
+          "wordCount": 177,
+          "title": "[Production] Registry ARIRegistryIn Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/sd5ylj5t474t",
+          "author": null,
+          "description": "Sep  1, 14:31 UTC\nResolved - This incident has been resolved.\nSep  1, 14:22 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  1, 14:14 UTC\nIdentified - We have identified an issue with a Gandimail storage unit. Our teams are working to resolve the issue.",
+          "link": "https://status.gandi.net/incidents/sd5ylj5t474t",
+          "publishedOn": "2021-09-01T14:31:59.000Z",
+          "wordCount": 164,
+          "title": "Gandimail storage incident"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/m8f2vc6yfwd2",
+          "author": null,
+          "description": "Sep  1, 11:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 31, 11:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 26, 10:54 UTC\nScheduled - Registry Nominet Maintenance\n            List of TLD(s) impacted:\nlondon\n            Maintenance Window: 2021-08-31 11:00AM UTC - 2021-09-01 11:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/m8f2vc6yfwd2",
+          "publishedOn": "2021-09-01T11:00:31.000Z",
+          "wordCount": 177,
+          "title": "[Production] Registry Nominet Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/3s9522j6q2qq",
+          "author": null,
+          "description": "Aug 31, 11:30 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 31, 06:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nJul 16, 16:03 UTC\nScheduled - Registry Nic.ch Maintenance\n            List of TLD(s) impacted:\n.ch, .li\n            Maintenance Window: 2021-08-31 06:00AM UTC - 2021-08-31 11:30AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/3s9522j6q2qq",
+          "publishedOn": "2021-08-31T11:30:29.000Z",
+          "wordCount": 178,
+          "title": "[OT&E] Registry Nic.ch Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/djq8gfc5swqc",
+          "author": null,
+          "description": "Aug 30, 18:30 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 30, 17:01 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 26, 10:53 UTC\nScheduled - Registry Donuts Maintenance\n            List of TLD(s) impacted:\nacademy, accountants, actor, agency, airforce, apartments, army, associates, attorney, auction, band, bargains, bike, bingo, boutique, broker, builders, business, cab, cafe, camera, camp, capital, cards, care, careers, cash, casino, catering, center, charity, chat, cheap, church, city, claims, cleaning, clinic, clothing, coach, codes, coffee, community, company, computer, condos, construction, consulting, contact, contractors, cool, coupons, credit, creditcard, cruises, dance, dating, deals, degree, delive…",
+          "link": "https://status.gandi.net/incidents/djq8gfc5swqc",
+          "publishedOn": "2021-08-30T18:30:30.000Z",
+          "wordCount": 424,
+          "title": "[Production] Registry Donuts Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/zr3shkhjl1gd",
+          "author": null,
+          "description": "Aug 30, 06:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 30, 05:02 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  9, 11:51 UTC\nScheduled - Registry Afnic Maintenance\n            List of TLD(s) impacted:\nfr, pm, re, tf, wf, yt\n            Maintenance Window: 2021-08-30 05:00AM UTC - 2021-08-30 06:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/zr3shkhjl1gd",
+          "publishedOn": "2021-08-30T06:00:29.000Z",
+          "wordCount": 182,
+          "title": "[Production] Registry Afnic Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/kgm9nnz6q1r9",
+          "author": null,
+          "description": "Aug 30, 00:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 29, 16:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  9, 11:43 UTC\nScheduled - Registry Sgnic Maintenance\n            List of TLD(s) impacted:\nsg, xn--clchc0ea0b2g2a9gcd, xn--yfro4i67o\n            Maintenance Window: 2021-08-29 04:00PM UTC - 2021-08-30 12:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/kgm9nnz6q1r9",
+          "publishedOn": "2021-08-30T00:00:29.000Z",
+          "wordCount": 179,
+          "title": "[Production] Registry Sgnic Maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/hqg84znpybh0",
+          "author": null,
+          "description": "Aug 28, 19:27 UTC\nResolved - This incident has been resolved.\nAug 28, 17:07 UTC\nIdentified - The issue has been identified and a fix is being implemented.",
+          "link": "https://status.gandi.net/incidents/hqg84znpybh0",
+          "publishedOn": "2021-08-28T19:27:26.000Z",
+          "wordCount": 134,
+          "title": ".SG domain maintenance"
+        },
+        {
+          "id": "https://status.gandi.net/incidents/wv62nk9tbsq1",
+          "author": null,
+          "description": "Aug 28, 11:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 28, 07:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 27, 15:09 UTC\nScheduled - Registry GmoShop Maintenance\n            List of TLD(s) impacted:\nshop\n            Maintenance Window: 2021-08-28 07:00AM UTC - 2021-08-28 11:00AM UTC\n            No action on these domains will be possible during this outage.",
+          "link": "https://status.gandi.net/incidents/wv62nk9tbsq1",
+          "publishedOn": "2021-08-28T11:00:42.000Z",
+          "wordCount": 177,
+          "title": "[Production] Registry GmoShop Maintenance"
+        }
+      ]
+    },
+    {
+      "title": "Cloudflare Status - Incident History",
+      "feedUrl": "https://www.cloudflarestatus.com/history.rss",
+      "siteUrl": "https://www.cloudflarestatus.com",
+      "articles": [
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/ytnym7g8sm6w",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 11, 17:00 UTC  -  Sep 19, 22:00 UTC\nSep  2, 19:31 UTC\nScheduled - Throughout the month of September 2021, we will be performing maintenance on various datacenters. Each window will be between 1am-6am local time of the data center. There is a possibility of a slight increase in latency during these maintenance windows. The most up-to-date schedule can be located here: Planned maintenance for Cloudflare data centers.",
+          "link": "https://www.cloudflarestatus.com/incidents/ytnym7g8sm6w",
+          "publishedOn": "2021-09-11T17:00:00.000Z",
+          "wordCount": 659,
+          "title": "Upcoming Datacenter Upgrades"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/5xxwjqd2lwgp",
+          "author": null,
+          "description": "THIS IS A SCHEDULED EVENT Sep 7, 23:00 UTC  -  Sep 8, 00:00 UTC\nAug 23, 22:29 UTC\nScheduled - The Cloudflare Dashboard will be unavailable during this maintenance window in order to improve future resiliency of the system. All dashboard UI actions will be unavailable during the window.  Cloudflare's API and edge will be unaffected during this maintenance.",
+          "link": "https://www.cloudflarestatus.com/incidents/5xxwjqd2lwgp",
+          "publishedOn": "2021-09-07T23:00:00.000Z",
+          "wordCount": 651,
+          "title": "Dashboard Maintenance"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/90mrl2bgm3d2",
+          "author": null,
+          "description": "Sep  4, 22:04 UTC\nResolved - This incident has been resolved.\nSep  4, 17:55 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nSep  4, 17:46 UTC\nInvestigating - Cloudflare is investigating issues with Image Resizing the AVIF image format in some later versions of the Chrome browser, including but not limited to Version 93.0.4577.63. We are working to understand the full impact and mitigate this problem. More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/90mrl2bgm3d2",
+          "publishedOn": "2021-09-04T22:04:21.000Z",
+          "wordCount": 685,
+          "title": "Image Resizing Availability Issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/y2bpgkh2y27f",
+          "author": null,
+          "description": "Sep  3, 22:01 UTC\nResolved - This incident has been resolved.\nSep  3, 21:39 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  3, 20:19 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nSep  3, 20:14 UTC\nUpdate - We are continuing to investigate this issue.\nSep  3, 20:09 UTC\nInvestigating - Cloudflare is investigating issues with Cloudflare Tunnel. Some users are reporting errors when attempting to add new IP/CIDR ranges to their Tunnel. This does not impact Tunnels with existing routes. \nWe are working to understand and mitigate this problem.  More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/y2bpgkh2y27f",
+          "publishedOn": "2021-09-03T22:01:56.000Z",
+          "wordCount": 720,
+          "title": "Argo Tunnel Creation Issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/y1sxp1mlcjkq",
+          "author": null,
+          "description": "Sep  3, 08:16 UTC\nResolved - This incident has been resolved.\nSep  3, 05:53 UTC\nIdentified - Cloudflare has identified the issue and is implementing a fix.\r\n\rWe will update the status once we implement the fix.\nSep  3, 04:14 UTC\nInvestigating - Cloudflare is investigating issues with Cloudflare Dashboard for WAF.\nThese issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.\nSome Customers Enabling WAF are impacted as they may not be able to enable it",
+          "link": "https://www.cloudflarestatus.com/incidents/y1sxp1mlcjkq",
+          "publishedOn": "2021-09-03T08:16:43.000Z",
+          "wordCount": 692,
+          "title": "Cloudflare Dashboard issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/348xy9nbhvc4",
+          "author": null,
+          "description": "Sep  2, 21:46 UTC\nResolved - This incident has been resolved.\nSep  2, 21:39 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  2, 21:32 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nSep  2, 21:25 UTC\nInvestigating - Cloudflare is investigating issues with network performance in IAD. \nWe are working to analyze and mitigate this problem. More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/348xy9nbhvc4",
+          "publishedOn": "2021-09-02T21:46:08.000Z",
+          "wordCount": 689,
+          "title": "Network Performance Issues in IAD"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/w06hyzyv89z6",
+          "author": null,
+          "description": "Sep  2, 19:45 UTC\nResolved - Cloudflare has resolved the issue and services have resumed normal operation.\nSep  2, 16:51 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nSep  2, 16:29 UTC\nInvestigating - Cloudflare investigating issues with our Vancouver data center. More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/w06hyzyv89z6",
+          "publishedOn": "2021-09-02T19:45:31.000Z",
+          "wordCount": 665,
+          "title": "Issues in Vancouver Data Center"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/06736yx445l4",
+          "author": null,
+          "description": "Sep  2, 15:07 UTC\nResolved - This incident has been resolved.\nSep  2, 10:49 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nSep  2, 07:38 UTC\nInvestigating - Cloudflare is investigating an increase 1029 Error Codes for specific customers. \nMore updates to be shared soon.",
+          "link": "https://www.cloudflarestatus.com/incidents/06736yx445l4",
+          "publishedOn": "2021-09-02T15:07:39.000Z",
+          "wordCount": 663,
+          "title": "Increase of 1029 Error Code"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/x5kpkl738xbm",
+          "author": null,
+          "description": "Sep  1, 13:13 UTC\nResolved - Cloudflare has resolved the issue and services have resumed normal operation.\nSep  1, 12:59 UTC\nMonitoring - Cloudflare has implemented a fix for this issue and is currently monitoring the results.\r\n\rWe will update the status once the issue is resolved.\nSep  1, 12:45 UTC\nInvestigating - Cloudflare is investigating issues with Cloudflare Dashboard and related APIs.\r\n\rThese issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.\r\n\rCustomers using the Dashboard / Cloudflare APIs are impacted as requests might fail and/or errors may be displayed.",
+          "link": "https://www.cloudflarestatus.com/incidents/x5kpkl738xbm",
+          "publishedOn": "2021-09-01T13:13:12.000Z",
+          "wordCount": 722,
+          "title": "Cloudflare Dashboard and Cloudflare API service issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/1s042t0jyg81",
+          "author": null,
+          "description": "Aug 31, 23:43 UTC\nResolved - This incident has been resolved.\nAug 31, 20:28 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.  The impact is now over.\nAug 31, 20:26 UTC\nInvestigating - Cloudflare is investigating issues with Gateway. Performance and connectivity through Gateway may be impacted.  Users may see 60 seconds of down time.\nWe are working to understand the full impact and mitigate this problem. More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/1s042t0jyg81",
+          "publishedOn": "2021-08-31T23:43:50.000Z",
+          "wordCount": 689,
+          "title": "Cloudflare for Teams: Gateway Issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/bl1vj2yznhj0",
+          "author": null,
+          "description": "Aug 31, 15:59 UTC\nResolved - This incident has been resolved.\nAug 31, 15:04 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 31, 14:08 UTC\nInvestigating - Customers attempting to modify or update their worker may experience delays in their Workers being updated. We are currently investigating the root cause.",
+          "link": "https://www.cloudflarestatus.com/incidents/bl1vj2yznhj0",
+          "publishedOn": "2021-08-31T15:59:46.000Z",
+          "wordCount": 665,
+          "title": "Cloudflare Workers update delays"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/5h89gpdbjtqm",
+          "author": null,
+          "description": "Aug 28, 06:00 UTC\nResolved - Between 06:00-06:10 UTC customers reaching Taipei would have experienced an increased number of 5xx errors.",
+          "link": "https://www.cloudflarestatus.com/incidents/5h89gpdbjtqm",
+          "publishedOn": "2021-08-28T06:00:00.000Z",
+          "wordCount": 625,
+          "title": "Increased number of 5xx errors in Taipei"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/2lz8r5cwyg37",
+          "author": null,
+          "description": "Aug 27, 15:54 UTC\nResolved - This incident has been resolved.\nAug 27, 15:35 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 27, 14:44 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 27, 14:42 UTC\nInvestigating - Network Performance Issues in India\nCloudflare is investigating issues with network performance in India.\nWe are working to analyse and mitigate this problem.  More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/2lz8r5cwyg37",
+          "publishedOn": "2021-08-27T15:54:52.000Z",
+          "wordCount": 689,
+          "title": "Network Performance Issues in India"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/6k4vhf15bjpp",
+          "author": null,
+          "description": "Aug 27, 06:00 UTC\nResolved - This incident has been resolved.\nAug 27, 05:27 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 27, 05:24 UTC\nInvestigating - Cloudflare is investigating issues with the Workers Dashboard.\nCustomers using Workers Dashboard are impacted, but customers can still use API to create the route.",
+          "link": "https://www.cloudflarestatus.com/incidents/6k4vhf15bjpp",
+          "publishedOn": "2021-08-27T06:00:40.000Z",
+          "wordCount": 662,
+          "title": "Cloudflare Dashboard Issue"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/8jvd5j5fx287",
+          "author": null,
+          "description": "Aug 26, 12:46 UTC\nCompleted - The scheduled work is now completed. Further maintenance in other locations are tentatively planned throughout the rest of the year. We will create a maintenance page for these once the dates are confirmed.\nAug  3, 17:30 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  3, 17:00 UTC\nScheduled - Throughout the month of August 2021, we will be performing maintenance on various datacenters. Each window will be between 1am-6am local time of the data center. There is a possibility of a slight increase in latency during these maintenance windows. The most up-to-date schedule can be located here: Planned maintenance for Cloudflare data centers.",
+          "link": "https://www.cloudflarestatus.com/incidents/8jvd5j5fx287",
+          "publishedOn": "2021-08-26T12:46:05.000Z",
+          "wordCount": 715,
+          "title": "Upcoming Datacenter Upgrades"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/qj4x8p0r9h63",
+          "author": null,
+          "description": "Aug 25, 19:24 UTC\nResolved - This incident has been resolved.\nAug 25, 18:48 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 25, 18:32 UTC\nUpdate - We are continuing to investigate this issue.\nAug 25, 18:27 UTC\nInvestigating - Cloudflare is investigating issues with Membership invites. User may encounter errors when accepting invites. We are working to resolve the issue. More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/qj4x8p0r9h63",
+          "publishedOn": "2021-08-25T19:24:06.000Z",
+          "wordCount": 677,
+          "title": "Issues with Account Membership Invites"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/bgfwxcrydqq3",
+          "author": null,
+          "description": "Aug 24, 23:10 UTC\nResolved - Cloudflare has experienced an increased level of HTTP 5xx errors from around  22:20 - 22:23 UTC in our ARN (Stockholm) data center",
+          "link": "https://www.cloudflarestatus.com/incidents/bgfwxcrydqq3",
+          "publishedOn": "2021-08-24T23:10:30.000Z",
+          "wordCount": 623,
+          "title": "Increased HTTP 5xx Errors"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/3ty0dmzvg5p8",
+          "author": null,
+          "description": "Aug 24, 23:00 UTC\nResolved - A retro incident has been declared related to Magic Transit. Impacted customers who have origin behind magic transit may see 530/522  in APAC region through Singapore data center. The impact of event is from 08-24 23:05 UTC to  08-25 01:13 UTC\nThe impact has been mitigated.",
+          "link": "https://www.cloudflarestatus.com/incidents/3ty0dmzvg5p8",
+          "publishedOn": "2021-08-24T23:00:00.000Z",
+          "wordCount": 646,
+          "title": "Magic Transit Degraded Performance"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/1j0grfznfsgl",
+          "author": null,
+          "description": "Aug 24, 17:57 UTC\nResolved - This incident has been resolved.\nAug 24, 14:36 UTC\nUpdate - We are continuing to monitor the situation regarding network performance in Taipei.\nAug 24, 08:28 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 24, 08:28 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 24, 06:36 UTC\nInvestigating - Cloudflare is investigating issues with network performance in Taipei. \nWe are working to analyse and mitigate this problem.  More updates to follow shortly.",
+          "link": "https://www.cloudflarestatus.com/incidents/1j0grfznfsgl",
+          "publishedOn": "2021-08-24T17:57:21.000Z",
+          "wordCount": 705,
+          "title": "Network Performance Issues in TPE"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/r4mljx561br5",
+          "author": null,
+          "description": "Aug 24, 03:47 UTC\nResolved - This incident has been resolved.\nAug 24, 03:24 UTC\nInvestigating - Cloudflare is investigating issues with Cloudflare Dashboard.\nIP Access Rules page has a long button in Firefox which is preventing Firefox users to add new rules.\nRecommendation: Please use another browser like Safari, Chrome.\nThese issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.\nCustomers using the Dashboard are impacted as requests might fail and/or errors may be displayed.",
+          "link": "https://www.cloudflarestatus.com/incidents/r4mljx561br5",
+          "publishedOn": "2021-08-24T03:47:44.000Z",
+          "wordCount": 687,
+          "title": "Cloudflare Dashboard issues"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/2z895fy54bs2",
+          "author": null,
+          "description": "Aug 23, 10:06 UTC\nResolved - This incident has been resolved.\nAug 23, 09:28 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 23, 08:46 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 23, 06:20 UTC\nUpdate - We are continuing to investigate this issue.\nAug 23, 06:18 UTC\nInvestigating - Cloudflare is aware of, and investigating a delay with Network analytics. Further detail will be provided as more information becomes available.",
+          "link": "https://www.cloudflarestatus.com/incidents/2z895fy54bs2",
+          "publishedOn": "2021-08-23T10:06:52.000Z",
+          "wordCount": 693,
+          "title": "Network Analytics Delays"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/dy2pj324k6mt",
+          "author": null,
+          "description": "Aug 21, 01:28 UTC\nResolved - This incident has been resolved.\nAug 21, 01:04 UTC\nInvestigating - Cloudflare is investigating issues with Cloudflare Dashboard firewall IP access rule UI. Customer may experience pagination of IP access rule not fully display on the UI\nThese issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.\nCustomers using the IP access rule Dashboard are impacted, but customers can still use API to create IP access rules.",
+          "link": "https://www.cloudflarestatus.com/incidents/dy2pj324k6mt",
+          "publishedOn": "2021-08-21T01:28:00.000Z",
+          "wordCount": 700,
+          "title": "Cloudflare Dashboard IP access rule UI issue"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/1pkbxsjxxppz",
+          "author": null,
+          "description": "Aug 20, 22:04 UTC\nResolved - Cloudflare is investigating an increased level of HTTP 502/504 errors. \nCloudflare has resolved the issue and services have resumed normal operation.",
+          "link": "https://www.cloudflarestatus.com/incidents/1pkbxsjxxppz",
+          "publishedOn": "2021-08-20T22:04:31.000Z",
+          "wordCount": 634,
+          "title": "Increased HTTP 502/504 Errors in ISB and LHE"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/wpkb7n8ywr44",
+          "author": null,
+          "description": "Aug 20, 20:17 UTC\nResolved - This incident has been resolved.\nAug 20, 19:16 UTC\nIdentified - Some China customers Edge requests are experiencing TLS Termination failures.  The Cloudflare team has identified an issue and working on applying the fix.",
+          "link": "https://www.cloudflarestatus.com/incidents/wpkb7n8ywr44",
+          "publishedOn": "2021-08-20T20:17:07.000Z",
+          "wordCount": 646,
+          "title": "TLS termination failures for some China customers"
+        },
+        {
+          "id": "https://www.cloudflarestatus.com/incidents/41c3fjyqjnqw",
+          "author": null,
+          "description": "Aug 19, 19:34 UTC\nResolved - Cloudflare has resolved the issue and services have resumed normal operation.\nAug 19, 18:47 UTC\nMonitoring - A fix has been implemented, and we are monitoring the results.\nAug 19, 18:37 UTC\nIdentified - The issue has been identified, and a fix is being implemented.\nAug 19, 18:31 UTC\nInvestigating - Cloudflare is aware of, and investigating, an issue which potentially impacts multiple customers using Workers in our Toronto and Lisbon data centers. Further detail will be provided as more information becomes available.",
+          "link": "https://www.cloudflarestatus.com/incidents/41c3fjyqjnqw",
+          "publishedOn": "2021-08-19T19:34:08.000Z",
+          "wordCount": 696,
+          "title": "Customer Impacting Issue"
+        }
+      ]
+    },
+    {
+      "title": "Fastly Status - Incident History",
+      "feedUrl": "https://status.fastly.com/history.rss",
+      "siteUrl": "https://status.fastly.com",
+      "articles": [
+        {
+          "id": "https://status.fastly.com/incidents/227c8qrbb48g",
+          "author": null,
+          "description": "Sep  2, 16:53 UTC\nCompleted - The scheduled maintenance has been completed.\nSep  2, 15:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 31, 02:32 UTC\nUpdate - Please be advised that the billing region information has changed from Asia/Pacific to South Korea\nAug 30, 23:46 UTC\nScheduled - As part of Fastly’s global network expansion, we will be adding a Seoul, South Korea (ICN) data center to Fastly's Asia/Pacific network.\nTraffic served by our ICN data center will be aggregated into our South Korea region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to ICN. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.",
+          "link": "https://status.fastly.com/incidents/227c8qrbb48g",
+          "publishedOn": "2021-09-02T16:53:26.000Z",
+          "wordCount": 1355,
+          "title": "New Data Center: Seoul (ICN)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/f83m70cqm258",
+          "author": null,
+          "description": "Sep  2, 16:00 UTC\nCompleted - The scheduled maintenance has been completed.\nSep  1, 16:02 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 27, 19:33 UTC\nUpdate - Updated the body of post\nAug  1, 04:24 UTC\nUpdate - Please be advised that the time of this maintenance event has changed from Aug 2nd, 16:00 UTC to Sep 1st, 16:00 UTC.\nJun 15, 20:33 UTC\nScheduled - As part of Fastly’s continuing network expansions, we’re excited to announce two changes to our billing regions:\nIn preparation for upcoming Fastly Points of Presence (POPs), we are launching the new South Korea billing region. The South Korea billing region rates will be the same as our current Africa billing region rates for Fastly customers paying standard billing rates. For…",
+          "link": "https://status.fastly.com/incidents/f83m70cqm258",
+          "publishedOn": "2021-09-02T16:00:32.000Z",
+          "wordCount": 1575,
+          "title": "Billing Region Changes: South Korea and South America"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/kwd9lwkxwczy",
+          "author": null,
+          "description": "Sep  2, 13:29 UTC\nResolved - This incident has been resolved.\nSep  2, 08:47 UTC\nIdentified - Traffic in Johannesburg (JNB) has been temporarily rerouted. All other locations and services are unaffected.",
+          "link": "https://status.fastly.com/incidents/kwd9lwkxwczy",
+          "publishedOn": "2021-09-02T13:29:08.000Z",
+          "wordCount": 1245,
+          "title": "Traffic rerouted in Johannesburg (JNB)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/399xsh0m7jjh",
+          "author": null,
+          "description": "Aug 31, 13:51 UTC\nResolved - This incident has been resolved.\nAug 31, 07:19 UTC\nInvestigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.",
+          "link": "https://status.fastly.com/incidents/399xsh0m7jjh",
+          "publishedOn": "2021-08-31T13:51:13.000Z",
+          "wordCount": 1245,
+          "title": "Traffic rerouted in Manila (MNL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/pvblyyxbtfgp",
+          "author": null,
+          "description": "Aug 29, 10:31 UTC\nResolved - This incident has been resolved.\nAug 29, 07:36 UTC\nInvestigating - We are currently investigating this issue.\nAug 29, 07:24 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 29, 06:36 UTC\nInvestigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.",
+          "link": "https://status.fastly.com/incidents/pvblyyxbtfgp",
+          "publishedOn": "2021-08-29T10:31:27.000Z",
+          "wordCount": 1278,
+          "title": "Traffic rerouted in Manila (MNL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/67p4n11mfvbq",
+          "author": null,
+          "description": "Aug 27, 22:04 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 20, 23:19 UTC\nUpdate - The time for this to take place is: 9:30-10:00 UTC.\nAug 17, 04:35 UTC\nUpdate - Please be advised that the time of this maintenance event has changed from Aug 24, entire day to Aug 24, 10:30 - 11:00 UTC.\nAug 10, 00:53 UTC\nScheduled - On August 24, 2021 GlobalSign will rotate their Atlas TLS CAs intermediate certificates.\nBeginning 2022, GlobalSign will start rotating their intermediate certificates on a quarterly basis, on the second Monday of every quarter. \nFor customers who are using Fastly TLS managed certificates issued by GlobalSign, also known as Fastly TLS Commercial CA, this change will require action on your part if you are using certificate or public key pinning to avoid any impact to your traffic. \nFor more information on the update from GlobalSign, please refer to the following links:\nhttps://www.globalsign.com/en/blog/upcoming-changes-publicly-trusted-tls-certificates \nhttps://support.globalsign.com/atlas/atlas-tls/atlas-tls-ica-rotations-2021",
+          "link": "https://status.fastly.com/incidents/67p4n11mfvbq",
+          "publishedOn": "2021-08-27T22:04:32.000Z",
+          "wordCount": 1372,
+          "title": "Globalsign Intermediate Certificate Rotation"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/v0pk9tz4558m",
+          "author": null,
+          "description": "Aug 24, 22:22 UTC\nResolved - This incident has been resolved.\nAug 24, 22:10 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 24, 21:36 UTC\nIdentified - The issue has been identified and a fix is being implemented.\nAug 24, 20:53 UTC\nUpdate - Update - We are continuing to investigate this issue.\nAug 24, 17:25 UTC\nInvestigating - We are currently investigating performance issues affecting the availability of our API. CDN delivery, stats aggregation, and all other data plane services are unaffected.",
+          "link": "https://status.fastly.com/incidents/v0pk9tz4558m",
+          "publishedOn": "2021-08-24T22:22:07.000Z",
+          "wordCount": 1308,
+          "title": "Fastly API Performance Issues"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/jvy7mtf7psv2",
+          "author": null,
+          "description": "Aug 24, 20:54 UTC\nResolved - This incident has been resolved.\nAug 24, 19:27 UTC\nUpdate - We are continuing to investigate this issue.\nAug 24, 19:08 UTC\nInvestigating - We're currently investigating performance issues with edge cloud configuration propagation. All other services are unaffected.",
+          "link": "https://status.fastly.com/incidents/jvy7mtf7psv2",
+          "publishedOn": "2021-08-24T20:54:19.000Z",
+          "wordCount": 1259,
+          "title": "Configuration Propagation Performance Issues"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/7qcqq86ch9rh",
+          "author": null,
+          "description": "Aug 22, 09:36 UTC\nResolved - This incident has been resolved.\nAug 22, 08:28 UTC\nIdentified - We're currently investigating potential impact to performance with our CDN services.",
+          "link": "https://status.fastly.com/incidents/7qcqq86ch9rh",
+          "publishedOn": "2021-08-22T09:36:24.000Z",
+          "wordCount": 1425,
+          "title": "CDN Performance Impact"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/8092cqljtddg",
+          "author": null,
+          "description": "Aug 19, 21:52 UTC\nResolved - This incident has been resolved.\nAug 19, 21:37 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 19, 21:20 UTC\nInvestigating - We are currently investigating performance issues affecting the availability of manage.fastly.com and our API. CDN delivery, stats aggregation, and all other data plane services are unaffected.",
+          "link": "https://status.fastly.com/incidents/8092cqljtddg",
+          "publishedOn": "2021-08-19T21:52:01.000Z",
+          "wordCount": 1280,
+          "title": "Fastly Control Plane Performance Issues"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/5wp5dcn0nzjv",
+          "author": null,
+          "description": "Aug 17, 05:41 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 17, 05:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 12, 04:56 UTC\nUpdate - We will be undergoing scheduled maintenance during this time.\nAug 12, 00:23 UTC\nUpdate - Please be advised that the time of this maintenance event has changed from Aug 12, 05:00 - 11:00 UTC to Aug 17, 05:00 - 11:00 UTC.\nAug  6, 12:45 UTC\nScheduled - As part of Fastly's global network expansion, we will be adding a Ashburn, Virginia (KIAD) data center to Fastly's North America network. \nTraffic served by our KIAD data center will be aggregated into our North America region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to KIAD. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.",
+          "link": "https://status.fastly.com/incidents/5wp5dcn0nzjv",
+          "publishedOn": "2021-08-17T05:41:05.000Z",
+          "wordCount": 1385,
+          "title": "New Data Center: Ashburn (KIAD)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/rp5qqjxbdzhb",
+          "author": null,
+          "description": "Aug 13, 02:54 UTC\nResolved - This incident has been resolved.\nAug 13, 01:20 UTC\nMonitoring - A fix has been implemented and we are monitoring the results.\nAug 12, 14:44 UTC\nInvestigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.",
+          "link": "https://status.fastly.com/incidents/rp5qqjxbdzhb",
+          "publishedOn": "2021-08-13T02:54:21.000Z",
+          "wordCount": 1264,
+          "title": "Traffic rerouted in Manila (MNL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/xq9gvxf9q1ft",
+          "author": null,
+          "description": "Aug 13, 00:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 12, 00:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  3, 06:10 UTC\nScheduled - Fastly’s global network is growing, and with that growth comes changes and enhancements in some of our naming conventions and best practices. Refer to our server.identity and server.hostname pages on Developer Hub for an in depth explanation of the new cache naming schema. Starting no earlier than Thursday, 12 Aug 2021, we will begin populating the node name in some situations according to a new scheme.\nWe’d like to share these changes so that if our customers are performing any troubleshooting or logging these values, one can not only know with certainty exactly what node processed a request, but also update any log parsing or automation to properly parse these values.\nPlease note that for most of our existing infrastructure, the naming scheme is not changing, and you will continue to see these values set to the previous scheme for some of your traffic and log data. We suggest that if customers are parsing these fields out and breaking them down into individual values (such as the node name and POP) to adjust any tooling or automation to be able to handle both formats.\nFeel free to reach out to our support team if you have any questions on these changes.\nserver.identity\nserver.hostname",
+          "link": "https://status.fastly.com/incidents/xq9gvxf9q1ft",
+          "publishedOn": "2021-08-13T00:00:35.000Z",
+          "wordCount": 1451,
+          "title": "New Cache Naming Schema"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/fbhc5pq7qml5",
+          "author": null,
+          "description": "Aug 12, 20:29 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 12, 17:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 11, 22:48 UTC\nUpdate - We will be undergoing scheduled maintenance during this time.\nAug 11, 21:49 UTC\nScheduled - As part of Fastly’s global network expansion, we will be adding a Kuala Lumpur, Malaysia (KUL) data center to Fastly's Asia/Pacific network. \nTraffic served by our KUL data center will be aggregated into our Asia/Pacific region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to KUL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.",
+          "link": "https://status.fastly.com/incidents/fbhc5pq7qml5",
+          "publishedOn": "2021-08-12T20:29:50.000Z",
+          "wordCount": 1353,
+          "title": "New Data Center: Kuala Lumpur (KUL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/txxbvvgv1zp5",
+          "author": null,
+          "description": "Aug 12, 09:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 12, 05:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug 12, 00:46 UTC\nUpdate - We will be undergoing scheduled maintenance during this time.\nAug  9, 23:06 UTC\nUpdate - Please be advised that the time of this maintenance event has changed from Aug 10th, 05:00 UTC to Aug 12th, 05:00 UTC.\nAug  6, 17:03 UTC\nScheduled - As part of Fastly’s global network expansion, we will be adding a Atlanta, Georgia (ATL) data center to Fastly's North America network. \nTraffic served by our ATL data center will be aggregated into our North America region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to ATL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.",
+          "link": "https://status.fastly.com/incidents/txxbvvgv1zp5",
+          "publishedOn": "2021-08-12T09:00:32.000Z",
+          "wordCount": 1381,
+          "title": "New Data Center: Atlanta (ATL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/3bwlf4zyqkk6",
+          "author": null,
+          "description": "Aug 10, 20:01 UTC\nResolved - This incident has been resolved.\nAug 10, 19:28 UTC\nUpdate - Fastly has observed recovery of most Fastly data centers, we are continuing to monitor and investigate into potential impact in our MAA data center.\nAug 10, 19:26 UTC\nUpdate - Fastly has observed recovery of most Fastly data centers, we are continuing to monitor and investigate into potential impact in our MAA data center.\nAug 10, 19:05 UTC\nMonitoring - We're currently investigating potential impact to performance with our CDN services.",
+          "link": "https://status.fastly.com/incidents/3bwlf4zyqkk6",
+          "publishedOn": "2021-08-10T20:01:25.000Z",
+          "wordCount": 1304,
+          "title": "CDN Performance Impact"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/cb42cvg549wn",
+          "author": null,
+          "description": "Aug 10, 18:00 UTC\nCompleted - The scheduled maintenance has been completed.\nAug 10, 17:00 UTC\nIn progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.\nAug  4, 22:13 UTC\nScheduled - As part of Fastly’s global network expansion, we will be adding a Manila, Philippines (MNL) data center to Fastly's Asia/Pacific network. \nTraffic served by our MNL data center will be aggregated into our Asia/Pacific region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to MNL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.",
+          "link": "https://status.fastly.com/incidents/cb42cvg549wn",
+          "publishedOn": "2021-08-10T18:00:03.000Z",
+          "wordCount": 1331,
+          "title": "New Data Center: Manila (MNL)"
+        },
+        {
+          "id": "https://status.fastly.com/incidents/0dzsw69vrbvb",
+          "author": null,
+          "description": "Aug  9, 22:49 UTC\nResolved - Fastly Engineers detected a performance impacting event affecting the availability of VCL configuration deployments from approximately 2021-08-09 20:55 UTC to 2021-08-09 21:15 UTC. CDN delivery, stats aggregation, and all other data plane services were unaffected. The issue has been resolved and we are monitoring performance closely.",
+          "link": "https://status.fastly.com/incidents/0dzsw69vrbvb",
+          "publishedOn": "2021-08-09T22:49:57.000Z",
+          "wordCount": 1264,
+          "title": "Retroactive - Configuration Deployments"
+        }
+      ]
+    }
+  ],
+  "cliVersion": "1.11.0"
+}

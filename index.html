@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>osmos::feed</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="alternate" type="application/rss+xml" title="osmos::feed" href="feed.atom" />
+    <style>
+        :root {
+            /**
+              * Palette
+              * Gruvbox dark, medium
+              * Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+              */
+            --base00: #282828;
+            --base01: #3c3836;
+            --base02: #504945;
+            --base03: #665c54;
+            --base04: #bdae93;
+            --base05: #d5c4a1;
+            --base06: #ebdbb2;
+            --base07: #fbf1c7;
+            --base08: #fb4934;
+            --base09: #fe8019;
+            --base0A: #fabd2f;
+            --base0B: #b8bb26;
+            --base0C: #8ec07c;
+            --base0D: #83a598;
+            --base0E: #d3869b;
+            --base0F: #d65d0e;
+
+            --font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+                "Helvetica Neue", sans-serif;
+            --font-size-scaler: 62.5%;
+            --font-size-m: 1.4rem;
+            --font-size-s: 1.2rem;
+
+            --body-color: var(--base04);
+            --body-bg: var(--base00);
+
+            --daily-heading-color: var(--base04);
+
+            --source-name-color: var(--base0A);
+            --source-name-hover-color: var(--base0A);
+
+            --article-title-color: var(--base05);
+            --article-title-hover-color: var(--base07);
+            --article-summary-color: var(--base04);
+            --article-summary-hover-color: var(--base07);
+
+            --accordion-content-rail-color: var(--base03);
+            --accordion-content-hover-rail-color: var(--base04);
+            --accordion-title-marker-color: var(--base03);
+            --accordion-title-hover-marker-color: var(--base04);
+
+            --card-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+            --card-bg: var(--base01);
+            --card-radius: 4px;
+
+            --footer-color: var(--base04);
+            --footer-link-hover-color: var(--base07);
+        }
+
+        html {
+            font-size: var(--font-size-scaler);
+        }
+
+        body {
+            background-color: var(--body-bg);
+            font-family: var(--font-family-default);
+            color: var(--body-color);
+            margin: 0;
+            gap: 24px;
+            padding: 16px;
+            display: grid;
+        }
+
+        :not(:focus-visible) {
+            outline: none;
+        }
+
+        .card {
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            background: var(--card-bg);
+        }
+
+        .sources {
+            padding: 12px 16px;
+            list-style: none;
+            margin: 0;
+            display: grid;
+            gap: 16px;
+        }
+
+        .daily-heading {
+            font-size: var(--font-size-s);
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            padding-left: 16px;
+            color: var(--daily-heading-color);
+        }
+
+        .source {
+            display: grid;
+            gap: 4px;
+        }
+
+        .source-name {
+            font-size: var(--font-size-s);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .source-name__link {
+            color: var(--source-name-color);
+            text-decoration: none;
+        }
+
+        .source-name__link:hover {
+            color: var(--source-name-hover-color);
+            text-decoration: underline;
+        }
+
+        .article-expander {
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .article-expander__title {
+            color: var(--article-title-color);
+            font-size: var(--font-size-m);
+            font-weight: 600;
+        }
+
+        .article-expander__title:hover {
+            cursor: pointer;
+            color: var(--article-title-hover-color);
+        }
+
+        .article-expander__title::marker {
+            color: var(--accordion-title-marker-color);
+        }
+
+        .article-expander__title:hover::marker {
+            color: var(--accordion-title-hover-marker-color);
+        }
+
+        .article-summary-link {
+            color: var(--article-summary-color);
+            font-size: var(--font-size-m);
+            text-decoration: none;
+        }
+
+        .article-summary-link:hover {
+            color: var(--article-summary-hover-color);
+            --accordion-content-rail-color: var(--accordion-content-hover-rail-color);
+        }
+
+        .article-summary-box-outer {
+            display: block;
+            padding: 4px 8px 8px 4px;
+        }
+
+        .article-summary-box-inner {
+            padding-left: 8px;
+            border-left: 1px solid var(--accordion-content-rail-color);
+        }
+
+        .article-reading-time {
+            font-weight: 600;
+        }
+
+        footer {
+            color: var(--footer-color);
+            font-size: var(--font-size-s);
+            display: flex;
+            padding: 0 16px;
+            justify-content: space-between;
+        }
+
+        .footer-link {
+            color: var(--footer-link-text);
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: var(--footer-link-hover-color);
+            text-decoration: underline;
+        }
+    </style>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+        /**
+     * Solarized Light
+     * Ethan Schoonover (modified by aramisgithub)
+     */
+        --base00: #fff;
+        --base01: #f5f8ff;
+        --base02: #dee3e3;
+        --base03: #80969d;
+        --base04: #7b8e8e;
+        --base05: #697777;
+        --base06: #566161;
+        --base07: #1a1e1e;
+        --base08: #0a0b0b;
+        --base0A: #2965ff;
+        --base0B: #3345f5;
+
+        /**
+    * Typograph
+    */
+        --font-family-default: 'Inter', "Helvetica Neue", sans-serif;
+        --font-size-m: 1.6rem;
+        --font-size-s: 1.4rem;
+
+        /**
+    * Components
+    */
+        --body-color: var(--base07);
+        --body-bg: var(--base00);
+
+        --source-name-color: var(--base07);
+        --source-name-hover-color: var(--base0A);
+
+        --article-title-color: var(--base0A);
+        --article-title-hover-color: var(--base0B);
+        --article-summary-hover-color: var(--base0A);
+
+        --card-bg: var(--base00);
+        --card-shadow: none;
+        --card-radius: 0;
+        --footer-link-hover-color: var(--base0A);
+    }
+
+    h1 {
+        margin-bottom: 2.8rem;
+        font-size: 2.2rem;
+    }
+
+    body {
+        max-width: 960px;
+        margin: 4rem auto;
+        letter-spacing: .2px;
+    }
+
+    .daily-content {
+        margin-bottom: .8rem;
+    }
+
+    .daily-heading {
+        margin: 0 0 4px 0;
+        padding: 0;
+        color: var(--base07);
+        font-size: 1.35rem;
+        font-weight: 600;
+    }
+
+    .sources {
+        padding: 12px 0;
+    }
+
+    .source-name {
+        margin-bottom: .8rem;
+    }
+
+    .source-name__link {
+        color: var(--base04);
+    }
+
+    .source-name__link:hover {
+        color: var(--base07);
+        text-decoration: none;
+    }
+
+    .article-expander {
+        margin: 1.2rem 0;
+        padding: 16px 20px;
+        background: var(--base01);
+    }
+
+    .article-expander__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        color: var(--article-title-color);
+        font-size: var(--font-size-m);
+        font-weight: 500;
+    }
+
+    .article-expander__title svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--base0A);
+    }
+
+    .article-expander[open] .article-expander__title svg {
+        transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+    }
+
+    .article-summary-box-outer {
+        padding: 0;
+    }
+
+    .article-summary-box-inner {
+        padding: 16px 0 12px;
+        border: none;
+        background: var(--base01);
+        border-radius: 3px;
+    }
+
+    .article-summary-box-inner pre {
+        margin: 0;
+        font-family: var(--font-family-default);
+        font-weight: 400;
+        line-height: 1.65;
+        white-space: pre-line;
+    }
+    
+    .article-summary-link {
+        color: var(--base06);
+        font-size: var(--font-size-s);
+    }
+
+    .article-summary-link:hover {
+        color: var(--base07);
+    }
+    
+</style>
+
+</head>
+
+<body>
+    <!-- %after-body-begin.html% -->
+    <header>
+        <h1>Broken DNS</h1>
+    </header>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-11-20">2021-11-20</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Technical Provider Hexonet  Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/b5x93fp5w7qc">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Nov 20, 08:00 - 12:00 UTC
+Jan 29, 17:13 UTC
+Scheduled - Registry Technical Provider Hexonet  Maintenance
+            List of TLD(s) impacted:
+.de, .au, .it, .es, .nl, .se, .lu, .nz, .at, .jp, .ru, .pl, .pt, .cat,
+.im, .gr, .dk, .hk, .cz, .ro, .lt, .pe, .no, .la, .mu, .lv, .ie, .af,
+.nu, .gy, .ph, .ht, .cx, .am, .cm, .mg, .si, .sk, .hn, .gs, .tl, .ms,
+.xn--p1ai, .sb, .ki, .xn--j6w193g, .nf
+            Maintenance Window: 2021-11-20 08:00AM UTC - 2021-11-20 12:00PM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-30">2021-09-30</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Nic.ch Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/xlw42zw36tcq">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 30, 05:00 - 05:30 UTC
+Jul 16, 16:02 UTC
+Scheduled - Registry Nic.ch Maintenance
+            List of TLD(s) impacted:
+.ch, .li
+            Maintenance Window: 2021-09-30 05:00AM UTC - 2021-09-30 05:30AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-26">2021-09-26</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Verisign Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/3fzhpfn3bd9d">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 26, 01:00 - 02:00 UTC
+Aug 27, 15:10 UTC
+Scheduled - Registry Verisign Maintenance
+            List of TLD(s) impacted:
+com, net
+            Maintenance Window: 2021-09-26 01:00AM UTC - 2021-09-26 02:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-23">2021-09-23</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Verisign Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/sh2ylglwfx3w">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 23, 21:00 UTC  -  Sep 24, 01:00 UTC
+Aug 26, 10:55 UTC
+Scheduled - Registry Verisign Maintenance
+            List of TLD(s) impacted:
+xn--tckwe, xn--t60b56a, xn--mk1bu44c, xn--9dbq2a, tv, name, cc
+            Maintenance Window: 2021-09-23 09:00PM UTC - 2021-09-24 01:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-21">2021-09-21</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Nominet Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/2yzmptpw4zj9">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 21, 05:00 - 07:00 UTC
+Aug 26, 10:51 UTC
+Scheduled - Registry Nominet Maintenance
+            List of TLD(s) impacted:
+yoga, work, wedding, wales, vodka, vip, co.uk, me.uk, org.uk, uk, surf, rodeo, realestate, miami, luxe, london, law, jobs, horse, garden, fit, fishing, fashion, cymru, cooking, casa, career, boston, beer, bayern, abogado
+            Maintenance Window: 2021-09-21 05:00AM UTC - 2021-09-21 07:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-14">2021-09-14</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry CentralNic Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/8zr34y644xh6">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 14, 10:00 - 14:00 UTC
+Aug 16, 08:20 UTC
+Scheduled - Registry CentralNic Maintenance
+            List of TLD(s) impacted:
+gent, ae.org, art, auto, autos, baby, bar, beauty, best, blog, boats, bond, br.com, build, cam, car, cars, ceo, cfd, cn.com, co.com, college, com.de, coop, cyou, de.com, desi, design, eu.com, fans, feedback, fm, forum, frl, fun, gay, gb.net, gd, gr.com, hair, homes, host, hu.net, icu, in.net, ink, jp.net, jpn.com, love, luxury, makeup, monster, motorcycles, online, ooo, press, protection, pw, qpon, quest, radio.am, radio.fm, reit, rent, rest, ru.com, sa.com, saarland, sbs, se.net, security, site, skin, space, storage, store, tech, theatre, tickets, uk.com, uk.net, uno, us.com, us.org, vg, website, wiki, xyz, yachts, za.com
+            Maintenance Window: 2021-09-14 10:00AM UTC - 2021-09-14 02:00PM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[OT&amp;E] Registry Nic.ch Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/2tpls26jmtbz">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 14, 06:00 - 11:30 UTC
+Jul 16, 16:04 UTC
+Scheduled - Registry Nic.ch Maintenance
+            List of TLD(s) impacted:
+.ch, .li
+            Maintenance Window: 2021-09-14 06:00AM UTC - 2021-09-14 11:30AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-11">2021-09-11</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Upcoming Datacenter Upgrades
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/ytnym7g8sm6w">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 11, 17:00 UTC  -  Sep 19, 22:00 UTC
+Sep  2, 19:31 UTC
+Scheduled - Throughout the month of September 2021, we will be performing maintenance on various datacenters. Each window will be between 1am-6am local time of the data center. There is a possibility of a slight increase in latency during these maintenance windows. The most up-to-date schedule can be located here: Planned maintenance for Cloudflare data centers.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-09">2021-09-09</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Afilias Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/7yc9z293f2hh">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 9, 10:00 - 11:00 UTC
+Aug 27, 15:14 UTC
+Scheduled - Registry Afilias Maintenance
+            List of TLD(s) impacted:
+ac, archi, bet, bio, black, blue, green, info, io, kim, lgbt, llc, mobi, organic, pet, pink, poker, pro, promo, red, sh, shiksha, ski, vote, voto, xn--5tzm5g, xn--6frz82g
+            Maintenance Window: 2021-09-09 10:00AM UTC - 2021-09-09 11:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Pir Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/2k708b30cdnk">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 9, 10:00 - 11:00 UTC
+Aug 27, 15:11 UTC
+Scheduled - Registry Pir Maintenance
+            List of TLD(s) impacted:
+ngo, ong, org, xn--c1avg, xn--i1b6b1a6a2e, xn--nqv7f
+            Maintenance Window: 2021-09-09 10:00AM UTC - 2021-09-09 11:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Nic.ch Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/zvts5mv266rk">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 9, 05:00 - 05:30 UTC
+Jul 16, 16:01 UTC
+Scheduled - Registry Nic.ch Maintenance
+            List of TLD(s) impacted:
+.ch, .li
+            Maintenance Window: 2021-09-09 05:00AM UTC - 2021-09-09 05:30AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-07">2021-09-07</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Dashboard Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/5xxwjqd2lwgp">
+                                    <div class="article-summary-box-inner">
+                                        <pre>THIS IS A SCHEDULED EVENT Sep 7, 23:00 UTC  -  Sep 8, 00:00 UTC
+Aug 23, 22:29 UTC
+Scheduled - The Cloudflare Dashboard will be unavailable during this maintenance window in order to improve future resiliency of the system. All dashboard UI actions will be unavailable during the window.  Cloudflare&#x27;s API and edge will be unaffected during this maintenance.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-05">2021-09-05</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Hosting PaaS SD5 node issue
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/86xd52c0thdr">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  5, 17:53 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  5, 16:48 UTC
+Identified - The issue has been identified and a fix is being implemented.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Sgnic Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/l4phvz6fp3yw">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  5, 16:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  9, 11:43 UTC
+Scheduled - Registry Sgnic Maintenance
+            List of TLD(s) impacted:
+sg, xn--clchc0ea0b2g2a9gcd, xn--yfro4i67o
+            Maintenance Window: 2021-09-05 04:00PM UTC - 2021-09-06 12:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-04">2021-09-04</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Image Resizing Availability Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/90mrl2bgm3d2">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  4, 22:04 UTC
+Resolved - This incident has been resolved.
+Sep  4, 17:55 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Sep  4, 17:46 UTC
+Investigating - Cloudflare is investigating issues with Image Resizing the AVIF image format in some later versions of the Chrome browser, including but not limited to Version 93.0.4577.63. We are working to understand the full impact and mitigate this problem. More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-03">2021-09-03</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://dnsimple.statuspage.io">DNSimple Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Registrar operations partially degraded
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://dnsimple.statuspage.io/incidents/f7c1nt20xsvv">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 21:55 UTC
+Resolved - This incident has been resolved.
+Sep  2, 09:06 UTC
+Update - Our upstream provider is still undergoing a DDoS attack. We&#x27;re working with them to mitigate this issue. Our system is still experiencing sporadic connection issues.
+If you have domains that expire in the next 48 hours, and you&#x27;re unable to renew them, please contact our support for assistance. This incident doesn&#x27;t affect domains that are set to auto-renew.
+If you have initiated a transfer, we&#x27;re monitoring your requests. These orders will complete but updates in our system might be delayed because of this incident.
+Sep  1, 09:37 UTC
+Update - We are continuing to monitor for any further issues.
+Sep  1, 09:37 UTC
+Monitoring - One of our upstream providers is undergoing a DDoS attack and registrar operations are partially degraded.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Connection issue with some registries
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/th1nhw0cnp27">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 15:59 UTC
+Resolved - This incident has been resolved.
+Sep  1, 11:44 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  1, 11:39 UTC
+Identified - We are investigating slow response times on some registries
+You may experience issues querying domain availability status for these TLDs:
+nu, it, de, at, cz, lu, pl, es, im, cat, ru, nl, jp, se, pt, hn, ht, gs, sb, tl, mu, cx, am, hk, lt, gb.com, la, kr.com, ar.com, qc.com, uy.com, se.com, hu.com, no.com, no, af, nf, ki, pe, gy, ms, dk, lv, ph, nz, ro, xn--p1ai, si, mg, au, gr, cm, xn--j6w193g, xn--qxam</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry HostmasterDK Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/9dyl24pd44w5">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 14:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 27, 15:19 UTC
+Scheduled - Registry HostmasterDK Maintenance
+            List of TLD(s) impacted:
+dk
+            Maintenance Window: 2021-09-03 02:00PM UTC - 2021-09-06 06:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">GandiMail storage incident
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/tgh6vxl0l2xm">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 09:55 UTC
+Resolved - This incident has been resolved.
+Sep  3, 09:16 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  3, 09:11 UTC
+Identified - We have identified an issue with a Gandimail storage unit. Our teams are working to resolve the issue.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Argo Tunnel Creation Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/y2bpgkh2y27f">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 22:01 UTC
+Resolved - This incident has been resolved.
+Sep  3, 21:39 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  3, 20:19 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Sep  3, 20:14 UTC
+Update - We are continuing to investigate this issue.
+Sep  3, 20:09 UTC
+Investigating - Cloudflare is investigating issues with Cloudflare Tunnel. Some users are reporting errors when attempting to add new IP/CIDR ranges to their Tunnel. This does not impact Tunnels with existing routes. 
+We are working to understand and mitigate this problem.  More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Dashboard issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/y1sxp1mlcjkq">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  3, 08:16 UTC
+Resolved - This incident has been resolved.
+Sep  3, 05:53 UTC
+Identified - Cloudflare has identified the issue and is implementing a fix.
+We will update the status once we implement the fix.
+Sep  3, 04:14 UTC
+Investigating - Cloudflare is investigating issues with Cloudflare Dashboard for WAF.
+These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.
+Some Customers Enabling WAF are impacted as they may not be able to enable it</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-02">2021-09-02</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Data Center: Seoul (ICN)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/227c8qrbb48g">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 16:53 UTC
+Completed - The scheduled maintenance has been completed.
+Sep  2, 15:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 31, 02:32 UTC
+Update - Please be advised that the billing region information has changed from Asia/Pacific to South Korea
+Aug 30, 23:46 UTC
+Scheduled - As part of Fastly’s global network expansion, we will be adding a Seoul, South Korea (ICN) data center to Fastly&#x27;s Asia/Pacific network.
+Traffic served by our ICN data center will be aggregated into our South Korea region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to ICN. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Billing Region Changes: South Korea and South America
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/f83m70cqm258">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 16:00 UTC
+Completed - The scheduled maintenance has been completed.
+Sep  1, 16:02 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 27, 19:33 UTC
+Update - Updated the body of post
+Aug  1, 04:24 UTC
+Update - Please be advised that the time of this maintenance event has changed from Aug 2nd, 16:00 UTC to Sep 1st, 16:00 UTC.
+Jun 15, 20:33 UTC
+Scheduled - As part of Fastly’s continuing network expansions, we’re excited to announce two changes to our billing regions:
+In preparation for upcoming Fastly Points of Presence (POPs), we are launching the new South Korea billing region. The South Korea billing region rates will be the same as our current Africa billing region rates for Fastly customers paying standard billing rates. For…</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Traffic rerouted in Johannesburg (JNB)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/kwd9lwkxwczy">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 13:29 UTC
+Resolved - This incident has been resolved.
+Sep  2, 08:47 UTC
+Identified - Traffic in Johannesburg (JNB) has been temporarily rerouted. All other locations and services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Network incident for 5mn on FR-SD3 IaaS
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/t1v8hdh24v6d">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 15:28 UTC
+Resolved - This incident has been resolved.
+Sep  2, 14:17 UTC
+Update - We are continuing to monitor for any further issues.
+Sep  2, 14:14 UTC
+Monitoring - We had a network incident between 15:37 and 15:43 CEST.
+During this time you may have seen services timeout toward FR-SD3 PaaS and IaaS. 
+We still have some instability on this segment</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry ARIRegistryIn Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/1007rf0q0256">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 03:30 UTC
+Completed - The scheduled maintenance has been completed.
+Sep  1, 23:31 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 27, 15:08 UTC
+Scheduled - Registry ARIRegistryIn Maintenance
+            List of TLD(s) impacted:
+.IN
+            Maintenance Window: 2021-09-01 11:30PM UTC - 2021-09-02 03:30AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Network Performance Issues in IAD
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/348xy9nbhvc4">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 21:46 UTC
+Resolved - This incident has been resolved.
+Sep  2, 21:39 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  2, 21:32 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Sep  2, 21:25 UTC
+Investigating - Cloudflare is investigating issues with network performance in IAD. 
+We are working to analyze and mitigate this problem. More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Issues in Vancouver Data Center
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/w06hyzyv89z6">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 19:45 UTC
+Resolved - Cloudflare has resolved the issue and services have resumed normal operation.
+Sep  2, 16:51 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  2, 16:29 UTC
+Investigating - Cloudflare investigating issues with our Vancouver data center. More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Increase of 1029 Error Code
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/06736yx445l4">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  2, 15:07 UTC
+Resolved - This incident has been resolved.
+Sep  2, 10:49 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Sep  2, 07:38 UTC
+Investigating - Cloudflare is investigating an increase 1029 Error Codes for specific customers. 
+More updates to be shared soon.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-09-01">2021-09-01</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Gandimail storage incident
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/sd5ylj5t474t">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  1, 14:31 UTC
+Resolved - This incident has been resolved.
+Sep  1, 14:22 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Sep  1, 14:14 UTC
+Identified - We have identified an issue with a Gandimail storage unit. Our teams are working to resolve the issue.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Nominet Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/m8f2vc6yfwd2">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  1, 11:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 31, 11:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 26, 10:54 UTC
+Scheduled - Registry Nominet Maintenance
+            List of TLD(s) impacted:
+london
+            Maintenance Window: 2021-08-31 11:00AM UTC - 2021-09-01 11:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Dashboard and Cloudflare API service issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/x5kpkl738xbm">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Sep  1, 13:13 UTC
+Resolved - Cloudflare has resolved the issue and services have resumed normal operation.
+Sep  1, 12:59 UTC
+Monitoring - Cloudflare has implemented a fix for this issue and is currently monitoring the results.
+We will update the status once the issue is resolved.
+Sep  1, 12:45 UTC
+Investigating - Cloudflare is investigating issues with Cloudflare Dashboard and related APIs.
+These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.
+Customers using the Dashboard / Cloudflare APIs are impacted as requests might fail and/or errors may be displayed.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-31">2021-08-31</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Traffic rerouted in Manila (MNL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/399xsh0m7jjh">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 31, 13:51 UTC
+Resolved - This incident has been resolved.
+Aug 31, 07:19 UTC
+Investigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[OT&amp;E] Registry Nic.ch Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/3s9522j6q2qq">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 31, 11:30 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 31, 06:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Jul 16, 16:03 UTC
+Scheduled - Registry Nic.ch Maintenance
+            List of TLD(s) impacted:
+.ch, .li
+            Maintenance Window: 2021-08-31 06:00AM UTC - 2021-08-31 11:30AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare for Teams: Gateway Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/1s042t0jyg81">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 31, 23:43 UTC
+Resolved - This incident has been resolved.
+Aug 31, 20:28 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.  The impact is now over.
+Aug 31, 20:26 UTC
+Investigating - Cloudflare is investigating issues with Gateway. Performance and connectivity through Gateway may be impacted.  Users may see 60 seconds of down time.
+We are working to understand the full impact and mitigate this problem. More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Workers update delays
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/bl1vj2yznhj0">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 31, 15:59 UTC
+Resolved - This incident has been resolved.
+Aug 31, 15:04 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 31, 14:08 UTC
+Investigating - Customers attempting to modify or update their worker may experience delays in their Workers being updated. We are currently investigating the root cause.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-30">2021-08-30</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Donuts Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/djq8gfc5swqc">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 30, 18:30 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 30, 17:01 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 26, 10:53 UTC
+Scheduled - Registry Donuts Maintenance
+            List of TLD(s) impacted:
+academy, accountants, actor, agency, airforce, apartments, army, associates, attorney, auction, band, bargains, bike, bingo, boutique, broker, builders, business, cab, cafe, camera, camp, capital, cards, care, careers, cash, casino, catering, center, charity, chat, cheap, church, city, claims, cleaning, clinic, clothing, coach, codes, coffee, community, company, computer, condos, construction, consulting, contact, contractors, cool, coupons, credit, creditcard, cruises, dance, dating, deals, degree, delive…</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Afnic Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/zr3shkhjl1gd">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 30, 06:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 30, 05:02 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  9, 11:51 UTC
+Scheduled - Registry Afnic Maintenance
+            List of TLD(s) impacted:
+fr, pm, re, tf, wf, yt
+            Maintenance Window: 2021-08-30 05:00AM UTC - 2021-08-30 06:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry Sgnic Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/kgm9nnz6q1r9">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 30, 00:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 29, 16:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  9, 11:43 UTC
+Scheduled - Registry Sgnic Maintenance
+            List of TLD(s) impacted:
+sg, xn--clchc0ea0b2g2a9gcd, xn--yfro4i67o
+            Maintenance Window: 2021-08-29 04:00PM UTC - 2021-08-30 12:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-29">2021-08-29</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Traffic rerouted in Manila (MNL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/pvblyyxbtfgp">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 29, 10:31 UTC
+Resolved - This incident has been resolved.
+Aug 29, 07:36 UTC
+Investigating - We are currently investigating this issue.
+Aug 29, 07:24 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 29, 06:36 UTC
+Investigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-28">2021-08-28</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://dnsimple.statuspage.io">DNSimple Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Registrar Scheduled Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://dnsimple.statuspage.io/incidents/d946xbhchqfk">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 28, 11:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 28, 07:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 27, 08:49 UTC
+Scheduled - Our upstream registrar provider will be undergoing scheduled maintenance during this time.
+During this scheduled system maintenance, the following services may be affected by a service interruption and/or timeout:
+- domain registrations
+- domain renewals
+- domain transfers
+- domain updates updates
+DNS resolution will not be impacted, domains will continue to resolve as usual.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Vanity Name Servers using legacy IPs outage
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://dnsimple.statuspage.io/incidents/g8793t4lgzw5">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 28, 01:04 UTC
+Resolved - This incident has been resolved.
+Aug 28, 00:28 UTC
+Monitoring - Our legacy Vanity Name Servers IPs are accepting traffic back again. We are monitoring the implemented fix
+Aug 27, 23:54 UTC
+Identified - Our vanity name servers using legacy IP addresses are currently unavailable. Those IPs are: 
+- 198.241.10.53
+- 198.241.11.53
+- 50.31.242.53
+- 50.31.243.53
+We are currently working on deploying a solution for it.
+Please notice that current vanity name servers using the current set of IP addresses are working as expected. https://support.dnsimple.com/articles/vanity-nameservers/</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.gandi.net">Gandi.net Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">.SG domain maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/hqg84znpybh0">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 28, 19:27 UTC
+Resolved - This incident has been resolved.
+Aug 28, 17:07 UTC
+Identified - The issue has been identified and a fix is being implemented.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Production] Registry GmoShop Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.gandi.net/incidents/wv62nk9tbsq1">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 28, 11:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 28, 07:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 27, 15:09 UTC
+Scheduled - Registry GmoShop Maintenance
+            List of TLD(s) impacted:
+shop
+            Maintenance Window: 2021-08-28 07:00AM UTC - 2021-08-28 11:00AM UTC
+            No action on these domains will be possible during this outage.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Increased number of 5xx errors in Taipei
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/5h89gpdbjtqm">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 28, 06:00 UTC
+Resolved - Between 06:00-06:10 UTC customers reaching Taipei would have experienced an increased number of 5xx errors.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.namecheap.com/status-updates">Domains – Namecheap Status</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">[Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.namecheap.com/status-updates/archives/62483">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Dear Customers, This is to let you know that the registry of .SG and .COM.SG domains will be processing scheduled maintenance. The time frame for the maintenance is as follows: September 4, 12:00 PM – 08:00 PM EST | September 4, 16:00 – September 5, 00:00 UTC Domain availability checks, registrations, renewals, updates, and WHOIS … Continue reading [Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021 →
+The post [Completed] .SG/.COM.SG REGISTRY SCHEDULED MAINTENANCE – September 4-5, 2021 appeared first on Namecheap Status.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-27">2021-08-27</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Globalsign Intermediate Certificate Rotation
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/67p4n11mfvbq">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 27, 22:04 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 20, 23:19 UTC
+Update - The time for this to take place is: 9:30-10:00 UTC.
+Aug 17, 04:35 UTC
+Update - Please be advised that the time of this maintenance event has changed from Aug 24, entire day to Aug 24, 10:30 - 11:00 UTC.
+Aug 10, 00:53 UTC
+Scheduled - On August 24, 2021 GlobalSign will rotate their Atlas TLS CAs intermediate certificates.
+Beginning 2022, GlobalSign will start rotating their intermediate certificates on a quarterly basis, on the second Monday of every quarter. 
+For customers who are using Fastly TLS managed certificates issued by GlobalSign, also known as Fastly TLS Commercial CA, this change will require action on your part if you are using certificate or public key pinning to avoid any impact to your traffic. 
+For more information on the update from GlobalSign, please refer to the following links:
+https://www.globalsign.com/en/blog/upcoming-changes-publicly-trusted-tls-certificates 
+https://support.globalsign.com/atlas/atlas-tls/atlas-tls-ica-rotations-2021</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Network Performance Issues in India
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/2lz8r5cwyg37">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 27, 15:54 UTC
+Resolved - This incident has been resolved.
+Aug 27, 15:35 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 27, 14:44 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 27, 14:42 UTC
+Investigating - Network Performance Issues in India
+Cloudflare is investigating issues with network performance in India.
+We are working to analyse and mitigate this problem.  More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Dashboard Issue
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/6k4vhf15bjpp">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 27, 06:00 UTC
+Resolved - This incident has been resolved.
+Aug 27, 05:27 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 27, 05:24 UTC
+Investigating - Cloudflare is investigating issues with the Workers Dashboard.
+Customers using Workers Dashboard are impacted, but customers can still use API to create the route.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-26">2021-08-26</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://dnsimple.statuspage.io">DNSimple Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Connection issues with registrar partner
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://dnsimple.statuspage.io/incidents/57dn2n15cm62">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 26, 08:43 UTC
+Resolved - Connection to our registrar partner has been restored. Domain registration, transfer, and Sectigo SSL certificate issuance is operational.
+Aug 26, 08:24 UTC
+Identified - We&#x27;re experiencing connection issues with one of our registrar partners. Domain registration, domain transfers, and Sectigo SSL certificates are impacted.
+DNS resolution is not impacted. Existing domains in our system are responding correctly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Upcoming Datacenter Upgrades
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/8jvd5j5fx287">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 26, 12:46 UTC
+Completed - The scheduled work is now completed. Further maintenance in other locations are tentatively planned throughout the rest of the year. We will create a maintenance page for these once the dates are confirmed.
+Aug  3, 17:30 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  3, 17:00 UTC
+Scheduled - Throughout the month of August 2021, we will be performing maintenance on various datacenters. Each window will be between 1am-6am local time of the data center. There is a possibility of a slight increase in latency during these maintenance windows. The most up-to-date schedule can be located here: Planned maintenance for Cloudflare data centers.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-25">2021-08-25</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Issues with Account Membership Invites
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/qj4x8p0r9h63">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 25, 19:24 UTC
+Resolved - This incident has been resolved.
+Aug 25, 18:48 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 25, 18:32 UTC
+Update - We are continuing to investigate this issue.
+Aug 25, 18:27 UTC
+Investigating - Cloudflare is investigating issues with Membership invites. User may encounter errors when accepting invites. We are working to resolve the issue. More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-24">2021-08-24</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Fastly API Performance Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/v0pk9tz4558m">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 22:22 UTC
+Resolved - This incident has been resolved.
+Aug 24, 22:10 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 24, 21:36 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 24, 20:53 UTC
+Update - Update - We are continuing to investigate this issue.
+Aug 24, 17:25 UTC
+Investigating - We are currently investigating performance issues affecting the availability of our API. CDN delivery, stats aggregation, and all other data plane services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Configuration Propagation Performance Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/jvy7mtf7psv2">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 20:54 UTC
+Resolved - This incident has been resolved.
+Aug 24, 19:27 UTC
+Update - We are continuing to investigate this issue.
+Aug 24, 19:08 UTC
+Investigating - We&#x27;re currently investigating performance issues with edge cloud configuration propagation. All other services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Increased HTTP 5xx Errors
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/bgfwxcrydqq3">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 23:10 UTC
+Resolved - Cloudflare has experienced an increased level of HTTP 5xx errors from around  22:20 - 22:23 UTC in our ARN (Stockholm) data center</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Magic Transit Degraded Performance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/3ty0dmzvg5p8">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 23:00 UTC
+Resolved - A retro incident has been declared related to Magic Transit. Impacted customers who have origin behind magic transit may see 530/522  in APAC region through Singapore data center. The impact of event is from 08-24 23:05 UTC to  08-25 01:13 UTC
+The impact has been mitigated.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Network Performance Issues in TPE
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/1j0grfznfsgl">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 17:57 UTC
+Resolved - This incident has been resolved.
+Aug 24, 14:36 UTC
+Update - We are continuing to monitor the situation regarding network performance in Taipei.
+Aug 24, 08:28 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 24, 08:28 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 24, 06:36 UTC
+Investigating - Cloudflare is investigating issues with network performance in Taipei. 
+We are working to analyse and mitigate this problem.  More updates to follow shortly.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Dashboard issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/r4mljx561br5">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 24, 03:47 UTC
+Resolved - This incident has been resolved.
+Aug 24, 03:24 UTC
+Investigating - Cloudflare is investigating issues with Cloudflare Dashboard.
+IP Access Rules page has a long button in Firefox which is preventing Firefox users to add new rules.
+Recommendation: Please use another browser like Safari, Chrome.
+These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.
+Customers using the Dashboard are impacted as requests might fail and/or errors may be displayed.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-23">2021-08-23</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Network Analytics Delays
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/2z895fy54bs2">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 23, 10:06 UTC
+Resolved - This incident has been resolved.
+Aug 23, 09:28 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 23, 08:46 UTC
+Identified - The issue has been identified and a fix is being implemented.
+Aug 23, 06:20 UTC
+Update - We are continuing to investigate this issue.
+Aug 23, 06:18 UTC
+Investigating - Cloudflare is aware of, and investigating a delay with Network analytics. Further detail will be provided as more information becomes available.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-22">2021-08-22</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">CDN Performance Impact
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/7qcqq86ch9rh">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 22, 09:36 UTC
+Resolved - This incident has been resolved.
+Aug 22, 08:28 UTC
+Identified - We&#x27;re currently investigating potential impact to performance with our CDN services.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-21">2021-08-21</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Cloudflare Dashboard IP access rule UI issue
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/dy2pj324k6mt">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 21, 01:28 UTC
+Resolved - This incident has been resolved.
+Aug 21, 01:04 UTC
+Investigating - Cloudflare is investigating issues with Cloudflare Dashboard firewall IP access rule UI. Customer may experience pagination of IP access rule not fully display on the UI
+These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.
+Customers using the IP access rule Dashboard are impacted, but customers can still use API to create IP access rules.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-20">2021-08-20</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Increased HTTP 502/504 Errors in ISB and LHE
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/1pkbxsjxxppz">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 20, 22:04 UTC
+Resolved - Cloudflare is investigating an increased level of HTTP 502/504 errors. 
+Cloudflare has resolved the issue and services have resumed normal operation.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">TLS termination failures for some China customers
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/wpkb7n8ywr44">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 20, 20:17 UTC
+Resolved - This incident has been resolved.
+Aug 20, 19:16 UTC
+Identified - Some China customers Edge requests are experiencing TLS Termination failures.  The Cloudflare team has identified an issue and working on applying the fix.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-19">2021-08-19</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Fastly Control Plane Performance Issues
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/8092cqljtddg">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 19, 21:52 UTC
+Resolved - This incident has been resolved.
+Aug 19, 21:37 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 19, 21:20 UTC
+Investigating - We are currently investigating performance issues affecting the availability of manage.fastly.com and our API. CDN delivery, stats aggregation, and all other data plane services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.names.co.uk">Namesco Limited Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Emergency Network Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.names.co.uk/incidents/61d6m3tdjdjf">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 19, 02:00 BST
+Completed - The scheduled maintenance has been completed.
+Aug 18, 23:00 BST
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 17, 14:49 BST
+Scheduled - During this maintenance period we will be making configuration changes to several core routers. We do not expect these changes to be service affecting however it should be considered an at-risk period.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://www.cloudflarestatus.com">Cloudflare Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Customer Impacting Issue
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://www.cloudflarestatus.com/incidents/41c3fjyqjnqw">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 19, 19:34 UTC
+Resolved - Cloudflare has resolved the issue and services have resumed normal operation.
+Aug 19, 18:47 UTC
+Monitoring - A fix has been implemented, and we are monitoring the results.
+Aug 19, 18:37 UTC
+Identified - The issue has been identified, and a fix is being implemented.
+Aug 19, 18:31 UTC
+Investigating - Cloudflare is aware of, and investigating, an issue which potentially impacts multiple customers using Workers in our Toronto and Lisbon data centers. Further detail will be provided as more information becomes available.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-17">2021-08-17</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Data Center: Ashburn (KIAD)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/5wp5dcn0nzjv">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 17, 05:41 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 17, 05:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 12, 04:56 UTC
+Update - We will be undergoing scheduled maintenance during this time.
+Aug 12, 00:23 UTC
+Update - Please be advised that the time of this maintenance event has changed from Aug 12, 05:00 - 11:00 UTC to Aug 17, 05:00 - 11:00 UTC.
+Aug  6, 12:45 UTC
+Scheduled - As part of Fastly&#x27;s global network expansion, we will be adding a Ashburn, Virginia (KIAD) data center to Fastly&#x27;s North America network. 
+Traffic served by our KIAD data center will be aggregated into our North America region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to KIAD. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.names.co.uk">Namesco Limited Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Generator Load Test
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.names.co.uk/incidents/xl59ftwtjxcj">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 17, 16:00 BST
+Completed - The scheduled maintenance has been completed.
+Aug 17, 09:02 BST
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  9, 14:40 BST
+Scheduled - During this maintenance window we will be performing a generator load test. This will involve transitioning from mains power to generators and then back again.
+We do not expect this to be service affecting however this should be considered an at-risk period.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-13">2021-08-13</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Traffic rerouted in Manila (MNL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/rp5qqjxbdzhb">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 13, 02:54 UTC
+Resolved - This incident has been resolved.
+Aug 13, 01:20 UTC
+Monitoring - A fix has been implemented and we are monitoring the results.
+Aug 12, 14:44 UTC
+Investigating - Traffic in Manila (MNL) has been temporarily rerouted. All other locations and services are unaffected.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Cache Naming Schema
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/xq9gvxf9q1ft">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 13, 00:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 12, 00:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  3, 06:10 UTC
+Scheduled - Fastly’s global network is growing, and with that growth comes changes and enhancements in some of our naming conventions and best practices. Refer to our server.identity and server.hostname pages on Developer Hub for an in depth explanation of the new cache naming schema. Starting no earlier than Thursday, 12 Aug 2021, we will begin populating the node name in some situations according to a new scheme.
+We’d like to share these changes so that if our customers are performing any troubleshooting or logging these values, one can not only know with certainty exactly what node processed a request, but also update any log parsing or automation to properly parse these values.
+Please note that for most of our existing infrastructure, the naming scheme is not changing, and you will continue to see these values set to the previous scheme for some of your traffic and log data. We suggest that if customers are parsing these fields out and breaking them down into individual values (such as the node name and POP) to adjust any tooling or automation to be able to handle both formats.
+Feel free to reach out to our support team if you have any questions on these changes.
+server.identity
+server.hostname</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-12">2021-08-12</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Data Center: Kuala Lumpur (KUL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/fbhc5pq7qml5">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 12, 20:29 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 12, 17:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 11, 22:48 UTC
+Update - We will be undergoing scheduled maintenance during this time.
+Aug 11, 21:49 UTC
+Scheduled - As part of Fastly’s global network expansion, we will be adding a Kuala Lumpur, Malaysia (KUL) data center to Fastly&#x27;s Asia/Pacific network. 
+Traffic served by our KUL data center will be aggregated into our Asia/Pacific region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to KUL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Data Center: Atlanta (ATL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/txxbvvgv1zp5">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 12, 09:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 12, 05:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug 12, 00:46 UTC
+Update - We will be undergoing scheduled maintenance during this time.
+Aug  9, 23:06 UTC
+Update - Please be advised that the time of this maintenance event has changed from Aug 10th, 05:00 UTC to Aug 12th, 05:00 UTC.
+Aug  6, 17:03 UTC
+Scheduled - As part of Fastly’s global network expansion, we will be adding a Atlanta, Georgia (ATL) data center to Fastly&#x27;s North America network. 
+Traffic served by our ATL data center will be aggregated into our North America region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to ATL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-11">2021-08-11</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.names.co.uk">Namesco Limited Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Emergency Network Maintenance
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.names.co.uk/incidents/tfl1zc4y46pk">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 11, 02:00 BST
+Completed - The scheduled maintenance has been completed.
+Aug 10, 23:00 BST
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  9, 14:52 BST
+Scheduled - During this maintenance period we will be making configuration changes to several core routers and access routers. We do not expect these changes to be service affecting however it should be considered an at-risk period.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-10">2021-08-10</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">CDN Performance Impact
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/3bwlf4zyqkk6">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 10, 20:01 UTC
+Resolved - This incident has been resolved.
+Aug 10, 19:28 UTC
+Update - Fastly has observed recovery of most Fastly data centers, we are continuing to monitor and investigate into potential impact in our MAA data center.
+Aug 10, 19:26 UTC
+Update - Fastly has observed recovery of most Fastly data centers, we are continuing to monitor and investigate into potential impact in our MAA data center.
+Aug 10, 19:05 UTC
+Monitoring - We&#x27;re currently investigating potential impact to performance with our CDN services.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">New Data Center: Manila (MNL)
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/cb42cvg549wn">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug 10, 18:00 UTC
+Completed - The scheduled maintenance has been completed.
+Aug 10, 17:00 UTC
+In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary.
+Aug  4, 22:13 UTC
+Scheduled - As part of Fastly’s global network expansion, we will be adding a Manila, Philippines (MNL) data center to Fastly&#x27;s Asia/Pacific network. 
+Traffic served by our MNL data center will be aggregated into our Asia/Pacific region for billing and stats purposes. We expect that some traffic currently served by our data centers in neighboring regions will shift to MNL. As such, some customers may see a change in their bills. Fastly’s standard billing rates are located at https://www.fastly.com/pricing.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+    <section class="daily-content">
+        <h2 class="daily-heading"><time datatime="2021-08-09">2021-08-09</time></h2>
+        <ul class="sources card">
+            <li class="source">
+                <section>
+                    <h3 class="source-name"><a class="source-name__link" href="https://status.fastly.com">Fastly Status - Incident History</a></h3>
+                    <section class="articles-per-source">
+                        <article>
+                            <details class="article-expander">
+                                <summary class="article-expander__title">Retroactive - Configuration Deployments
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.293 5.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 9.586l4.293-4.293z"/>
+                                    </svg>
+                                </summary>
+                                <a class="article-summary-link article-summary-box-outer" href="https://status.fastly.com/incidents/0dzsw69vrbvb">
+                                    <div class="article-summary-box-inner">
+                                        <pre>Aug  9, 22:49 UTC
+Resolved - Fastly Engineers detected a performance impacting event affecting the availability of VCL configuration deployments from approximately 2021-08-09 20:55 UTC to 2021-08-09 21:15 UTC. CDN delivery, stats aggregation, and all other data plane services were unaffected. The issue has been resolved and we are monitoring performance closely.</pre>
+                                    </div>
+                                </a>
+                            </details>
+                        </article>
+                    </section>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <time id="build-timestamp" datetime="2021-09-05T18:22:35.093Z">2021-09-05T18:22:35.093Z</time>
+    </footer>
+    <script>
+        document.addEventListener("click", (event) => {
+            const actionButton = event.target.closest(`[data-action]`);
+
+            if (actionButton) {
+                actionButton.closest("article").classList.toggle("expanded");
+            }
+        });
+
+        const timestamp = document.getElementById("build-timestamp");
+        timestamp.innerText = new Date(timestamp.getAttribute("datetime")).toLocaleString();
+    </script>
+    <!-- %before-body-end.html% -->
+</body>
+
+</html>
